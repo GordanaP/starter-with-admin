@@ -218,16 +218,16 @@
             <div class="collapse" id="forms">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/basic_elements.html">Form Elements</a>
+                        <a class="nav-link" href="{{ route('admin.forms.basic') }}">Form Elements</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/advanced_elements.html">Advanced Forms</a>
+                        <a class="nav-link" href="{{ route('admin.forms.advanced') }}">Advanced Forms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/validation.html">Validation</a>
+                        <a class="nav-link" href="{{ route('admin.forms.validation') }}">Validation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/forms/wizard.html">Wizard</a>
+                        <a class="nav-link" href="{{ route('admin.forms.wizard') }}">Wizard</a>
                     </li>
                 </ul>
             </div>
