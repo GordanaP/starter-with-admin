@@ -1,9 +1,9 @@
 <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="index.html">
+        <a class="navbar-brand brand-logo" href="{{ route('welcome') }}">
             <img src="{{ asset('vendor/purple-admin-pro/assets/images/logo.svg') }}" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini" href="index.html">
+        <a class="navbar-brand brand-logo-mini" href="{{ route('welcome') }}">
             <img src="{{ asset('vendor/purple-admin-pro/assets/images/logo-mini.svg') }}" alt="logo" />
         </a>
     </div>
@@ -58,7 +58,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="{{ asset('assets/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
+                            <img src="{{ asset('vendor/purple-admin-pro/assets/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
                         </div>
                         <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                             <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
@@ -68,7 +68,7 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item preview-item">
                         <div class="preview-thumbnail">
-                            <img src="{{ asset('assets/images/faces/face2.jpg') }}" alt="image" class="profile-pic">
+                            <img src="{{ asset('vendor/purple-admin-pro/assets/images/faces/face2.jpg') }}" alt="image" class="profile-pic">
                         </div>
                         <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
                             <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>

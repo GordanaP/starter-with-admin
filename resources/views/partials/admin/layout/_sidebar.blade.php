@@ -288,16 +288,16 @@
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/basic-table.html">Basic table</a>
+                        <a class="nav-link" href="{{ route('admin.tables.basic') }}">Basic table</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/data-table.html">Data table</a>
+                        <a class="nav-link" href="{{ route('admin.tables.datatable') }}">Data table</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/js-grid.html">Js-grid</a>
+                        <a class="nav-link" href="{{ route('admin.tables.js_grid') }}">Js-grid</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/tables/sortable-table.html">Sortable table</a>
+                        <a class="nav-link" href="{{ route('admin.tables.sortable') }}">Sortable table</a>
                     </li>
                 </ul>
             </div>

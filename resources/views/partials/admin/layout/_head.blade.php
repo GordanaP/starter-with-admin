@@ -7,7 +7,7 @@
 <title>{{ config('app.name', 'Laravel') }} | Admin | @yield('title', 'Dashboard')</title>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+{{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
 <!-- Plugins -->
 <link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
@@ -17,6 +17,7 @@
 
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+{{-- <link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/vendors/css/vendor.bundle.base.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/css/demo_1/style.css') }}">
 
 @yield('links')
