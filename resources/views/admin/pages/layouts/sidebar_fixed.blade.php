@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('title', 'Sidebar Fixed')
+
 @section('links')
     <link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
 @endsection

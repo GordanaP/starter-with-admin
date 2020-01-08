@@ -15,123 +15,123 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.dashboard') }}">
+            <a class="nav-link py-2" href="{{ route('admin.dashboard') }}">
                 <span class="menu-title">Dashboard</span>
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#page-layouts" aria-expanded="false" aria-controls="page-layouts">
+            <a class="nav-link py-2" data-toggle="collapse" href="#layouts" aria-expanded="false" aria-controls="layouts">
                 <span class="menu-title">Page Layouts</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-apps menu-icon"></i>
             </a>
-            <div class="collapse" id="page-layouts">
-                <ul class="nav flex-column sub-menu">
+            <div class="collapse" id="layouts">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/layout/boxed-layout.html">Boxed</a>
+                        <a class="nav-link py-2" href="{{ route('admin.layouts.boxed') }}">Boxed</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/layout/rtl-layout.html">RTL</a>
+                        <a class="nav-link py-2" href="#">RTL</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#apps" aria-expanded="false" aria-controls="apps">
+            <a class="nav-link py-2" data-toggle="collapse" href="#applications" aria-expanded="false" aria-controls="applications">
                 <span class="menu-title">Apps</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-cart-arrow-down menu-icon"></i>
             </a>
-            <div class="collapse" id="apps">
-                <ul class="nav flex-column sub-menu">
+            <div class="collapse" id="applications">
+                <ul class="nav flex-column sub-menu sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/apps/kanban-board.html">kanban-board</a>
+                        <a class="nav-link py-2" href="{{ route('admin.apps.kanban') }}">kanban-board</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/apps/todo.html">Todo List</a>
+                        <a class="nav-link py-2" href="{{ route('admin.apps.todo') }}">Todo List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/apps/tickets.html">Tickets</a>
+                        <a class="nav-link py-2" href="{{ route('admin.apps.tickets') }}">Tickets</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/apps/chats.html">Chats</a>
+                        <a class="nav-link py-2" href="{{ route('admin.apps.chats') }}">Chats</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/samples/widgets.html">
+            <a class="nav-link py-2" href="{{ route('admin.samples.widgets') }}">
                 <span class="menu-title">Widgets</span>
                 <i class="mdi mdi-forum menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#sidebar-layouts" aria-expanded="false" aria-controls="sidebar-layouts">
+            <a class="nav-link py-2" data-toggle="collapse" href="#sidebar-layouts" aria-expanded="false" aria-controls="sidebar-layouts">
                 <span class="menu-title">Sidebar Layouts</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-playlist-play menu-icon"></i>
             </a>
             <div class="collapse" id="sidebar-layouts">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/layout/compact-menu.html">Compact menu</a>
+                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_compact') }}">Compact menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/layout/sidebar-collapsed.html">Icon menu</a>
+                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_icon') }}">Icon menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/layout/sidebar-hidden.html">Sidebar Hidden</a>
+                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_hidden') }}">Sidebar Hidden</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/layout/sidebar-hidden-overlay.html">Sidebar Overlay</a>
+                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_overlay') }}">Sidebar Overlay</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/layout/sidebar-fixed.html">Sidebar Fixed</a>
+                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_fixed') }}">Sidebar Fixed</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link py-2" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-title">Basic UI Elements</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-crosshairs-gps menu-icon"></i>
             </a>
             <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/accordions.html">Accordions</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.accordions') }}">Accordions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.buttons') }}">Buttons</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/badges.html">Badges</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.badges') }}">Badges</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/breadcrumbs.html">Breadcrumbs</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.breadcrumbs') }}">Breadcrumbs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.dropdowns') }}">Dropdowns</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/modals.html">Modals</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.modals') }}">Modals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/progress.html">Progress bar</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.progress') }}">Progress bar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/pagination.html">Pagination</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.pagination') }}">Pagination</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/tabs.html">Tabs</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.tabs') }}">Tabs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/typography.html">Typography</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.typography') }}">Typography</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/tooltips.html">Tooltip</a>
+                        <a class="nav-link" href="{{ route('admin.ui-features.tooltips') }}">Tooltip</a>
                     </li>
                 </ul>
             </div>
@@ -143,7 +143,7 @@
                 <i class="mdi mdi-cards-variant menu-icon"></i>
             </a>
             <div class="collapse" id="ui-advanced">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
                         <a class="nav-link" href="pages/ui-features/dragula.html">Dragula</a>
                     </li>
@@ -190,7 +190,7 @@
                 <i class="mdi mdi-contacts menu-icon"></i>
             </a>
             <div class="collapse" id="icons">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
                         <a class="nav-link" href="pages/icons/mdi.html">Material</a>
                     </li>
@@ -216,18 +216,18 @@
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
             </a>
             <div class="collapse" id="forms">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.forms.basic') }}">Form Elements</a>
+                        <a class="nav-link" href="#">Form Elements</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.forms.advanced') }}">Advanced Forms</a>
+                        <a class="nav-link" href="#">Advanced Forms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.forms.validation') }}">Validation</a>
+                        <a class="nav-link" href="#">Validation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.forms.wizard') }}">Wizard</a>
+                        <a class="nav-link" href="#">Wizard</a>
                     </li>
                 </ul>
             </div>
@@ -251,7 +251,7 @@
                 <i class="mdi mdi-chart-bar menu-icon"></i>
             </a>
             <div class="collapse" id="charts">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
                         <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
                     </li>
@@ -286,18 +286,18 @@
                 <i class="mdi mdi-table-large menu-icon"></i>
             </a>
             <div class="collapse" id="tables">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.tables.basic') }}">Basic table</a>
+                        <a class="nav-link" href="#">Basic table</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.tables.datatable') }}">Data table</a>
+                        <a class="nav-link" href="#">Data table</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.tables.js_grid') }}">Js-grid</a>
+                        <a class="nav-link" href="#">Js-grid</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.tables.sortable') }}">Sortable table</a>
+                        <a class="nav-link" href="#">Sortable table</a>
                     </li>
                 </ul>
             </div>
@@ -309,7 +309,7 @@
                 <i class="mdi mdi-map-marker-radius menu-icon"></i>
             </a>
             <div class="collapse" id="maps">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
                         <a class="nav-link" href="pages/maps/google-maps.html">Google Maps</a>
                     </li>
@@ -329,7 +329,7 @@
                 <i class="mdi mdi-lock menu-icon"></i>
             </a>
             <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
                         <a class="nav-link" href="pages/samples/login.html"> Login </a>
                     </li>
@@ -358,7 +358,7 @@
                 <i class="mdi mdi-security menu-icon"></i>
             </a>
             <div class="collapse" id="error">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
                         <a class="nav-link" href="pages/samples/error-404.html"> 404 </a>
                     </li>
@@ -375,7 +375,7 @@
                 <i class="mdi mdi-medical-bag menu-icon"></i>
             </a>
             <div class="collapse" id="general-pages">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
                         <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a>
                     </li>
@@ -416,7 +416,7 @@
                 <i class="mdi mdi-shopping menu-icon"></i>
             </a>
             <div class="collapse" id="e-commerce">
-                <ul class="nav flex-column sub-menu">
+                <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
                         <a class="nav-link" href="pages/samples/email-template.html"> Email Templates </a>
                     </li>
@@ -439,19 +439,19 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/apps/email.html">
+            <a class="nav-link py-2" href="{{ route('admin.apps.email') }}">
                 <span class="menu-title">E-mail</span>
                 <i class="mdi mdi-email menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/apps/calendar.html">
+            <a class="nav-link py-2" href="{{ route('admin.apps.calendar') }}">
                 <span class="menu-title">Calendar</span>
                 <i class="mdi mdi-calendar-today menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/apps/gallery.html">
+            <a class="nav-link" href="{{ route('admin.apps.gallery') }}">
                 <span class="menu-title">Gallery</span>
                 <i class="mdi mdi-image-filter-frames menu-icon"></i>
             </a>

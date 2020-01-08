@@ -1,15 +1,9 @@
 <div class="page-header">
-    <h3 class="page-title">
-        <span class="page-title-icon bg-gradient-primary text-white mr-2">
-          <i class="mdi {{ $icon }}"></i>
-        </span> {{ $title }}
-    </h3>
+    <h3 class="page-title">{{ $title }}</h3>
     <nav aria-label="breadcrumb">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">
-                <span></span>Overview
-                <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i>
-            </li>
-        </ul>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">{{ $item }}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
+        </ol>
     </nav>
 </div>
