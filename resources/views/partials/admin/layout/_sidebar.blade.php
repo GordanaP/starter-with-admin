@@ -75,19 +75,19 @@
             <div class="collapse" id="sidebar-layouts">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_compact') }}">Compact menu</a>
+                        <a class="nav-link py-2" href="{{ route('admin.layouts.sidebar_compact') }}">Compact menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_icon') }}">Icon menu</a>
+                        <a class="nav-link py-2" href="{{ route('admin.layouts.sidebar_icon') }}">Icon menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_hidden') }}">Sidebar Hidden</a>
+                        <a class="nav-link py-2" href="{{ route('admin.layouts.sidebar_hidden') }}">Sidebar Hidden</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_overlay') }}">Sidebar Overlay</a>
+                        <a class="nav-link py-2" href="{{ route('admin.layouts.sidebar_overlay') }}">Sidebar Overlay</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.layouts.sidebar_fixed') }}">Sidebar Fixed</a>
+                        <a class="nav-link py-2" href="{{ route('admin.layouts.sidebar_fixed') }}">Sidebar Fixed</a>
                     </li>
                 </ul>
             </div>
@@ -101,43 +101,43 @@
             <div class="collapse" id="ui-basic">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.accordions') }}">Accordions</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.accordions') }}">Accordions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.buttons') }}">Buttons</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.buttons') }}">Buttons</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.badges') }}">Badges</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.badges') }}">Badges</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.breadcrumbs') }}">Breadcrumbs</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.breadcrumbs') }}">Breadcrumbs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.dropdowns') }}">Dropdowns</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.dropdowns') }}">Dropdowns</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.modals') }}">Modals</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.modals') }}">Modals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.progress') }}">Progress bar</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.progress') }}">Progress bar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.pagination') }}">Pagination</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.pagination') }}">Pagination</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.tabs') }}">Tabs</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.tabs') }}">Tabs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.typography') }}">Typography</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.typography') }}">Typography</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.ui-features.tooltips') }}">Tooltip</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.tooltips') }}">Tooltip</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-advanced" aria-expanded="false" aria-controls="ui-advanced">
+            <a class="nav-link py-2" data-toggle="collapse" href="#ui-advanced" aria-expanded="false" aria-controls="ui-advanced">
                 <span class="menu-title">Advanced UI</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-cards-variant menu-icon"></i>
@@ -145,46 +145,46 @@
             <div class="collapse" id="ui-advanced">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/dragula.html">Dragula</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.dragula') }}">Dragula</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/clipboard.html">Clipboard</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.clipboard') }}">Clipboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/context-menu.html">Context menu</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.context_menu') }}">Context menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/slider.html">Slider</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.slider') }}">Slider</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/colcade.html">Colcade</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.colcade') }}">Colcade</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/carousel.html">Carousel</a
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.carousel') }}">Carousel</a
                             ></li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/loaders.html">Loaders</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.loaders') }}">Loaders</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/ui-features/treeview.html">Tree View</a>
+                        <a class="nav-link py-2" href="{{ route('admin.ui-features.treeview') }}">Tree View</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/ui-features/popups.html">
+            <a class="nav-link py-2" href="{{ route('admin.ui-features.popups') }}">
                 <span class="menu-title">Popups</span>
                 <i class="mdi mdi-forum menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/ui-features/notifications.html">
+            <a class="nav-link py-2" href="{{ route('admin.ui-features.notifications') }}">
                 <span class="menu-title">Notifications</span>
                 <i class="mdi mdi-bell-ring menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
+            <a class="nav-link py-2" data-toggle="collapse" href="#icons" aria-expanded="false" aria-controls="icons">
                 <span class="menu-title">Icons</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-contacts menu-icon"></i>
@@ -192,25 +192,25 @@
             <div class="collapse" id="icons">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/mdi.html">Material</a>
+                        <a class="nav-link py-2" href="{{ route('admin.icons.mdi') }}">Material</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/flag-icons.html">Flag icons</a>
+                        <a class="nav-link py-2" href="{{ route('admin.icons.flag') }}">Flag icons</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/font-awesome.html">Font Awesome</a>
+                        <a class="nav-link py-2" href="{{ route('admin.icons.font_awesome') }}">Font Awesome</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/simple-line-icon.html">Simple line icons</a>
+                        <a class="nav-link py-2" href="{{ route('admin.icons.simple_line') }}">Simple line icons</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/icons/themify.html">Themify icons</a>
+                        <a class="nav-link py-2" href="{{ route('admin.icons.themify') }}">Themify icons</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#forms" aria-expanded="false" aria-controls="forms">
+            <a class="nav-link py-2" data-toggle="collapse" href="#forms" aria-expanded="false" aria-controls="forms">
                 <span class="menu-title">Forms</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-format-list-bulleted menu-icon"></i>
@@ -218,34 +218,34 @@
             <div class="collapse" id="forms">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Form Elements</a>
+                        <a class="nav-link py-2" href="{{ route('admin.forms.basic') }}">Form Elements</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Advanced Forms</a>
+                        <a class="nav-link py-2" href="{{ route('admin.forms.advanced') }}">Advanced Forms</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Validation</a>
+                        <a class="nav-link py-2" href="{{ route('admin.forms.validation') }}">Validation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Wizard</a>
+                        <a class="nav-link py-2" href="{{ route('admin.forms.wizard') }}">Wizard</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/forms/text_editor.html">
+            <a class="nav-link py-2" href="{{ route('admin.forms.text_editors') }}">
                 <span class="menu-title">Text editors</span>
                 <i class="mdi mdi-file-document menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/forms/code_editor.html">
+            <a class="nav-link py-2" href="{{ route('admin.forms.code_editors') }}">
                 <span class="menu-title">Code editors</span>
                 <i class="mdi mdi-code-not-equal-variant menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+            <a class="nav-link py-2" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
                 <span class="menu-title">Charts</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-chart-bar menu-icon"></i>
@@ -253,34 +253,34 @@
             <div class="collapse" id="charts">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartjs.html">ChartJs</a>
+                        <a class="nav-link py-2" href="{{ route('admin.charts.chartJs') }}">ChartJs</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/morris.html">Morris</a>
+                        <a class="nav-link py-2" href="{{ route('admin.charts.morris') }}">Morris</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/flot-chart.html">Flot</a>
+                        <a class="nav-link py-2" href="{{ route('admin.charts.flot') }}">Flot</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/google-charts.html">Google charts</a>
+                        <a class="nav-link py-2" href="{{ route('admin.charts.google') }}">Google charts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/sparkline.html">Sparkline js</a>
+                        <a class="nav-link py-2" href="{{ route('admin.charts.sparkline') }}">Sparkline js</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/c3.html">C3 charts</a>
+                        <a class="nav-link py-2" href="{{ route('admin.charts.C3') }}">C3 charts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/chartist.html">Chartist</a>
+                        <a class="nav-link py-2" href="{{ route('admin.charts.chartist') }}">Chartist</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/charts/justGage.html">JustGage</a>
+                        <a class="nav-link py-2" href="{{ route('admin.charts.justgage') }}">JustGage</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
+            <a class="nav-link py-2" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
                 <span class="menu-title">Tables</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-table-large menu-icon"></i>
@@ -288,22 +288,22 @@
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Basic table</a>
+                        <a class="nav-link py-2" href="{{ route('admin.tables.basic') }}">Basic table</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Data table</a>
+                        <a class="nav-link py-2" href="{{ route('admin.tables.datatable') }}">Data table</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Js-grid</a>
+                        <a class="nav-link py-2" href="{{ route('admin.tables.js_grid') }}">Js-grid</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sortable table</a>
+                        <a class="nav-link py-2" href="{{ route('admin.tables.sortable') }}">Sortable table</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#maps" aria-expanded="false" aria-controls="maps">
+            <a class="nav-link py-2" data-toggle="collapse" href="#maps" aria-expanded="false" aria-controls="maps">
                 <span class="menu-title">Maps</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-map-marker-radius menu-icon"></i>
@@ -311,19 +311,19 @@
             <div class="collapse" id="maps">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/maps/google-maps.html">Google Maps</a>
+                        <a class="nav-link py-2" href="{{ route('admin.maps.google') }}">Google Maps</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/maps/mapael.html">Mapael</a>
+                        <a class="nav-link py-2" href="{{ route('admin.maps.mapael') }}">Mapael</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/maps/vector-map.html">Vector map</a>
+                        <a class="nav-link py-2" href="{{ route('admin.maps.vector') }}">Vector map</a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+            <a class="nav-link py-2" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <span class="menu-title">User Pages</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-lock menu-icon"></i>
@@ -331,28 +331,28 @@
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/login.html"> Login </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.login') }}"> Login </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.login_2') }}"> Login 2 </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/multi-level-login.html"> Multi Level Login </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.multilevel_login') }}"> Multi Level Login </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/register.html"> Register </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.register') }}"> Register </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.register_2') }}"> Register 2 </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.lockscreen') }}"> Lockscreen </a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
+            <a class="nav-link py-2" data-toggle="collapse" href="#error" aria-expanded="false" aria-controls="error">
                 <span class="menu-title">Error pages</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-security menu-icon"></i>
@@ -360,16 +360,16 @@
             <div class="collapse" id="error">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/error-404.html"> 404 </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.error_404') }}"> 404 </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/error-500.html"> 500 </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.error_500') }}"> 500 </a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
+            <a class="nav-link py-2" data-toggle="collapse" href="#general-pages" aria-expanded="false" aria-controls="general-pages">
                 <span class="menu-title">General Pages</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-medical-bag menu-icon"></i>
@@ -377,40 +377,40 @@
             <div class="collapse" id="general-pages">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/blank-page.html"> Blank Page </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.blank_page') }}"> Blank Page </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/landing-page.html"> Landing Page </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.landing_page') }}"> Landing Page </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/profile.html"> Profile </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.profile') }}"> Profile </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/faq.html"> FAQ </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.faq') }}"> FAQ </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/faq-2.html"> FAQ 2 </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.faq_2') }}"> FAQ 2 </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/news-grid.html"> News grid </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.news_grid') }}"> News grid </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/timeline.html"> Timeline </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.timeline') }}"> Timeline </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/search-results.html"> Search Results </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.search_results') }}"> Search Results </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/portfolio.html"> Portfolio </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.portfolio') }}"> Portfolio </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/user-listing.html"> User Listing </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.user_listing') }}"> User Listing </a>
                     </li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#e-commerce" aria-expanded="false" aria-controls="e-commerce">
+            <a class="nav-link py-2" data-toggle="collapse" href="#e-commerce" aria-expanded="false" aria-controls="e-commerce">
                 <span class="menu-title">E-commerce</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-shopping menu-icon"></i>
@@ -418,22 +418,22 @@
             <div class="collapse" id="e-commerce">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/email-template.html"> Email Templates </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.email_templates') }}"> Email Templates </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/invoice.html"> Invoice </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.invoice') }}"> Invoice </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/pricing-table.html"> Pricing Table </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.pricing_table') }}"> Pricing Table </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/product-catalogue.html"> Product Catalogue </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.product_catalogue') }}"> Product Catalogue </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/project-list.html"> Project List </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.project_list') }}"> Project List </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="pages/samples/orders.html"> Orders </a>
+                        <a class="nav-link py-2" href="{{ route('admin.samples.orders') }}"> Orders </a>
                     </li>
                 </ul>
             </div>
@@ -451,19 +451,19 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.apps.gallery') }}">
+            <a class="nav-link py-2" href="{{ route('admin.apps.gallery') }}">
                 <span class="menu-title">Gallery</span>
                 <i class="mdi mdi-image-filter-frames menu-icon"></i>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://www.bootstrapdash.com/demo/purple/jquery/documentation/documentation.html" target="_blank">
+            <a class="nav-link py-2" href="http://www.bootstrapdash.com/demo/purple/jquery/documentation/documentation.html" target="_blank">
                 <span class="menu-title">Documentation</span>
                 <i class="mdi mdi-file-document-box menu-icon"></i>
             </a>
         </li>
         <li class="nav-item sidebar-actions">
-            <span class="nav-link">
+            <span class="nav-link py-2">
                 <div class="border-bottom">
                     <h6 class="font-weight-normal mb-3">Projects</h6>
                 </div>

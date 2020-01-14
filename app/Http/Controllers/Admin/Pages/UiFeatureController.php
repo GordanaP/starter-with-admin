@@ -13,7 +13,7 @@ class UiFeatureController extends Controller
      */
     public function accordions()
     {
-        return view('admin.pages.ui-features.accordions');
+        return view('admin.pages.ui-features.basic.accordions');
     }
 
     /**
@@ -23,7 +23,7 @@ class UiFeatureController extends Controller
      */
     public function badges()
     {
-        return view('admin.pages.ui-features.badges');
+        return view('admin.pages.ui-features.basic.badges');
     }
 
     /**
@@ -33,7 +33,7 @@ class UiFeatureController extends Controller
      */
     public function breadcrumbs()
     {
-        return view('admin.pages.ui-features.breadcrumbs');
+        return view('admin.pages.ui-features.basic.breadcrumbs');
     }
 
     /**
@@ -43,7 +43,7 @@ class UiFeatureController extends Controller
      */
     public function buttons()
     {
-        return view('admin.pages.ui-features.buttons');
+        return view('admin.pages.ui-features.basic.buttons');
     }
 
     /**
@@ -53,7 +53,7 @@ class UiFeatureController extends Controller
      */
     public function dropdowns()
     {
-        return view('admin.pages.ui-features.dropdowns');
+        return view('admin.pages.ui-features.basic.dropdowns');
     }
 
     /**
@@ -63,7 +63,17 @@ class UiFeatureController extends Controller
      */
     public function modals()
     {
-        return view('admin.pages.ui-features.modals');
+        return view('admin.pages.ui-features.basic.modals');
+    }
+
+    /**
+     * Show the admin notifications.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function notifications()
+    {
+        return view('admin.pages.ui-features.basic.notifications');
     }
 
     /**
@@ -73,7 +83,7 @@ class UiFeatureController extends Controller
      */
     public function progress()
     {
-        return view('admin.pages.ui-features.progress');
+        return view('admin.pages.ui-features.basic.progress');
     }
 
     /**
@@ -83,7 +93,17 @@ class UiFeatureController extends Controller
      */
     public function pagination()
     {
-        return view('admin.pages.ui-features.pagination');
+        return view('admin.pages.ui-features.basic.pagination');
+    }
+
+    /**
+     * Show the admin popups.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function popups()
+    {
+        return view('admin.pages.ui-features.basic.popups');
     }
 
     /**
@@ -93,7 +113,7 @@ class UiFeatureController extends Controller
      */
     public function tabs()
     {
-        return view('admin.pages.ui-features.tabs');
+        return view('admin.pages.ui-features.basic.tabs');
     }
 
     /**
@@ -103,7 +123,7 @@ class UiFeatureController extends Controller
      */
     public function tooltips()
     {
-        return view('admin.pages.ui-features.tooltips');
+        return view('admin.pages.ui-features.basic.tooltips');
     }
 
     /**
@@ -113,6 +133,86 @@ class UiFeatureController extends Controller
      */
     public function typography()
     {
-        return view('admin.pages.ui-features.typography');
+        return view('admin.pages.ui-features.basic.typography');
+    }
+
+    /**
+     * Show the admin carousel.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function carousel()
+    {
+        return view('admin.pages.ui-features.advanced.carousel');
+    }
+
+    /**
+     * Show the admin clipboard.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function clipboard()
+    {
+        return view('admin.pages.ui-features.advanced.clipboard');
+    }
+
+    /**
+     * Show the admin colcade.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function colcade()
+    {
+        return view('admin.pages.ui-features.advanced.colcade');
+    }
+
+    /**
+     * Show the admin context menu.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function context_menu()
+    {
+        return view('admin.pages.ui-features.advanced.context_menu');
+    }
+
+    /**
+     * Show the admin dragula.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function dragula()
+    {
+        return view('admin.pages.ui-features.advanced.dragula');
+    }
+
+    /**
+     * Show the admin loaders.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function loaders()
+    {
+        return view('admin.pages.ui-features.advanced.loaders');
+    }
+
+    /**
+     * Show the admin slider.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function slider()
+    {
+        return view('admin.pages.ui-features.advanced.slider');
+    }
+
+    /**
+     * Show the admin treeview.
+     *
+     * @return \Illuminate\Support\Response
+     */
+    public function treeview()
+    {
+        return view('admin.pages.ui-features.advanced.treeview');
     }
 }
