@@ -5,4 +5,7 @@
 <script src="{{ asset('vendor/purple-admin-pro/assets/js/settings.js') }}"></script>
 <script src="{{ asset('vendor/purple-admin-pro/assets/js/todolist.js') }}"></script>
 
+<script src="{{ asset('js/pluralize.js') }}"></script>
+<script src="{{ asset('js/checkbox.js') }}"></script>
+
 @yield('scripts')

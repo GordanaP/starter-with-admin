@@ -10,13 +10,13 @@
 {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
 <!-- Plugins -->
-<link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
-<link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/vendors/css/vendor.bundle.base.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/vendors/font-awesome/css/font-awesome.min.css') }}" />
 
 @yield('links')
 
 <!-- Styles -->
-{{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/vendors/css/vendor.bundle.base.css') }}">
+<link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/css/demo_1/style.css') }}">
 <link rel="shortcut icon" href="{{ asset('vendor/purple-admin-pro/assets/images/favicon.png') }}" />

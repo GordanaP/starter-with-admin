@@ -1,10 +1,15 @@
 <?php
 
+/**
+ * Home
+ */
 Route::namespace('Admin')->group(function(){
     Route::get('/', 'HomeController@index')->name('admin.index');
-    Route::get('/dashboard', 'HomeController@dashboard')->name('admin.dashboard');
 });
 
+/**
+ * Layouts
+ */
 Route::prefix('pages/layouts')->as('admin.layouts.')->namespace('Admin\Pages')
     ->group(function(){
         Route::get('/boxed', 'LayoutController@boxed')->name('boxed');
@@ -15,6 +20,9 @@ Route::prefix('pages/layouts')->as('admin.layouts.')->namespace('Admin\Pages')
         Route::get('/sidebar-fixed', 'LayoutController@sidebar_fixed')->name('sidebar_fixed');
     });
 
+/**
+ * Apps
+ */
 Route::prefix('pages/apps')->as('admin.apps.')->namespace('Admin\Pages')
     ->group(function(){
         Route::get('/calendar', 'AppController@calendar')->name('calendar');
@@ -26,6 +34,9 @@ Route::prefix('pages/apps')->as('admin.apps.')->namespace('Admin\Pages')
         Route::get('/todo-list', 'AppController@todo')->name('todo');
     });
 
+/**
+ * Samples
+ */
 Route::prefix('pages/samples')->as('admin.samples.')->namespace('Admin\Pages')
     ->group(function(){
         Route::get('/blank-page', 'SampleController@blank_page')->name('blank_page');
@@ -55,6 +66,9 @@ Route::prefix('pages/samples')->as('admin.samples.')->namespace('Admin\Pages')
         Route::get('/user-listing', 'SampleController@user_listing')->name('user_listing');
     });
 
+/**
+ * Ui-features
+ */
 Route::prefix('pages/ui-features')->as('admin.ui-features.')->namespace('Admin\Pages')
     ->group(function(){
         Route::get('/accordions', 'UiFeatureController@accordions')->name('accordions');
@@ -80,6 +94,9 @@ Route::prefix('pages/ui-features')->as('admin.ui-features.')->namespace('Admin\P
         Route::get('/treeview', 'UiFeatureController@treeview')->name('treeview');
     });
 
+/**
+ * Icons
+ */
 Route::prefix('pages/icons')->as('admin.icons.')->namespace('Admin\Pages')
     ->group(function(){
         Route::get('/flag-icons', 'IconController@flag')->name('flag');
@@ -89,6 +106,9 @@ Route::prefix('pages/icons')->as('admin.icons.')->namespace('Admin\Pages')
         Route::get('/themify-icons', 'IconController@themify')->name('themify');
     });
 
+/**
+ * Forms
+ */
 Route::prefix('pages/forms')->as('admin.forms.')->namespace('Admin\Pages')
     ->group(function(){
         Route::get('/advanced', 'FormController@advanced')->name('advanced');
@@ -99,6 +119,9 @@ Route::prefix('pages/forms')->as('admin.forms.')->namespace('Admin\Pages')
         Route::get('/wizard', 'FormController@wizard')->name('wizard');
     });
 
+/**
+ * Charts
+ */
 Route::prefix('pages/charts')->as('admin.charts.')->namespace('Admin\Pages')
     ->group(function(){
         Route::get('/c3', 'ChartController@c3')->name('C3');
@@ -111,6 +134,9 @@ Route::prefix('pages/charts')->as('admin.charts.')->namespace('Admin\Pages')
         Route::get('/sparkline', 'ChartController@sparkline')->name('sparkline');
     });
 
+/**
+ * Tables
+ */
 Route::prefix('pages/tables')->as('admin.tables.')->namespace('Admin\Pages')
     ->group(function(){
         Route::get('/basic', 'TableController@basic')->name('basic');
@@ -119,6 +145,9 @@ Route::prefix('pages/tables')->as('admin.tables.')->namespace('Admin\Pages')
         Route::get('/sortable', 'TableController@sortable')->name('sortable');
     });
 
+/**
+ * Maps
+ */
 Route::prefix('pages/maps')->as('admin.maps.')->namespace('Admin\Pages')
     ->group(function(){
         Route::get('/google', 'MapController@google')->name('google');

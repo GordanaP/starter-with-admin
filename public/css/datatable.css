@@ -1,0 +1,12 @@
+.dt-button.purple { background: #e9d8fd; border: 1px solid #b794f4;}
+.dt-button.purple:hover { color: white; background: #d6bcfa !important; border: 1px solid #9f7aea;}
+.dt-button.delete-checked {display: none; background: #f56565; border: 1px solid #f565655 !important; }
+.dt-button.delete-checked:hover {background: #e53e3e !important; border: 1px solid #f565655 !important;}
+.admin-table { color: #718096 !important; border-bottom-color: #ebedf2 !important}
+.admin-table th { font-weight: 400 !important; color: #718096 !important; font-size: 0.75rem !important;}
+.admin-table td { padding-left: 18px !important}
+.dataTables_filter input { border: 1px solid #ebedf2 !important; height: 32px !important; padding: 4px 8px!important; }
+.dataTables_filter label {  margin-bottom: 0px !important }
+.dataTables_length select { height: 32px !important; padding: 4px 8px!important; margin-bottom: 0px !important; margin-left: 0px !important; padding-left: 0px }
+.dataTables_length label {  margin-bottom: 0px !important }
+.dataTables_wrapper .row .col-sm-6 { margin: auto; }

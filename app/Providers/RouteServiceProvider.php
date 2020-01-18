@@ -46,7 +46,9 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        $this->mapAdminRoutes();
+        $this->mapAdminVendorRoutes();
+
+        $this->mapAdminAppRoutes();
 
         //
     }
@@ -81,13 +83,24 @@ class RouteServiceProvider extends ServiceProvider
     }
 
     /**
-     * Define the "admin" routes of the application.
+     * Define the "admin vendor" routes of the application.
      */
-    protected function mapAdminRoutes()
+    protected function mapAdminVendorRoutes()
     {
         Route::prefix('admin')
              ->middleware('web')
              ->namespace($this->namespace)
-             ->group(base_path('routes/admin.php'));
+             ->group(base_path('routes/admin_vendor.php'));
+    }
+
+    /**
+     * Define the "admin app" routes of the application.
+     */
+    protected function mapAdminAppRoutes()
+    {
+        Route::prefix('admin')
+             ->middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/admin_app.php'));
     }
 }
