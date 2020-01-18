@@ -15,11 +15,11 @@
     ">
         <div class="container-scroller">
 
-            @include('partials/admin/layout/_navbar')
+            @include('partials.admin.layout._vendor_navbar')
 
             <div class="container-fluid page-body-wrapper">
-                @include('partials/admin/layout/_settings')
-                @include('partials/admin/layout/_sidebar')
+                @include('partials.admin.layout._settings')
+                @include('partials.admin.layout._vendor_sidebar')
 
                 <div class="main-panel">
                     <div class="content-wrapper">

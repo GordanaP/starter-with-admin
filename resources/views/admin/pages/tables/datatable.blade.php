@@ -1,4 +1,4 @@
-@extends('layouts.admin.dashboard')
+@extends('layouts.admin.vendor_dashboard')
 
 @section('title', 'DataTables')
 

@@ -9,5 +9,6 @@
         @yield('content')
 
         @include('partials.admin.layout._scripts')
+
     </body>
 </html>

@@ -1,7 +1,8 @@
 <?php
 
 Route::namespace('Admin')->group(function(){
-    Route::get('/dashboard', 'HomeController@index')->name('admin.dashboard');
+    Route::get('/', 'HomeController@index')->name('admin.index');
+    Route::get('/dashboard', 'HomeController@dashboard')->name('admin.dashboard');
 });
 
 Route::prefix('pages/layouts')->as('admin.layouts.')->namespace('Admin\Pages')

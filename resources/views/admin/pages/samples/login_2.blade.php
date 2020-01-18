@@ -1,4 +1,4 @@
-@extends('layouts.admin.blank')
+@extends('layouts.admin.vendor_blank')
 
 @section('title', 'Login 2')
 

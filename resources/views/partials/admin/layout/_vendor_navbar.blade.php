@@ -22,6 +22,11 @@
             </form>
         </div>
         <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item">
+                <a href="{{ route('admin.dashboard') }}" style="font-size: 20px; color: #9f7aea !important;">
+                    <i class="mdi mdi-view-dashboard"></i>
+                </a>
+            </li>
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-toggle="dropdown" aria-expanded="false">
                     <div class="nav-profile-img">
