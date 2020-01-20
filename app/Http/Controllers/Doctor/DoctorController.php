@@ -4,11 +4,30 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Doctor;
 use App\Expertise;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Contracts\ImageManager;
+use App\Http\Controllers\Controller;
+use App\Services\ManageImage\DoctorImage;
 
 class DoctorController extends Controller
 {
+    /**
+     * The image manager.
+     *
+     * @var App\Contracts\ImageManager
+     */
+    private $imageManager;
+
+    /**
+     * Create a new class instance.
+     *
+     * @param App\Contracts\ImageManager $imageManager
+     */
+    public function __construct(ImageManager $imageManager)
+    {
+        $this->imageManager = $imageManager;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -43,6 +62,8 @@ class DoctorController extends Controller
 
         $doctor->expertises()->sync($request->expertise_id);
 
+        $this->imageManager->manage($doctor, $request->image);
+
         return back();
     }
 
@@ -65,7 +86,9 @@ class DoctorController extends Controller
      */
     public function edit(Doctor $doctor)
     {
-        return view('doctors.edit', compact('doctor'));
+        $expertises = Expertise::all();
+
+        return view('doctors.edit', compact('doctor', 'expertises'));
     }
 
     /**

@@ -24,7 +24,7 @@
             @endrequiredFields
 
             <form action="{{ route('admin.doctors.store') }}" method="POST"
-            class="forms-sample">
+            class="forms-sample" enctype="multipart/form-data">
 
                 @csrf
 
@@ -135,6 +135,19 @@
                     placeholder="Administrative position"></textarea>
                 </div>
 
+                <!-- Image -->
+                <div class="form-group">
+                    <label>Image upload:</label>
+                    <input type="file" name="image" id="image" class="file-upload-default">
+                    <div class="input-group col-xs-12">
+                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                        <span class="input-group-append">
+                            <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Submit -->
                 <button type="submit" class="btn btn-gradient-primary mr-2">
                     Submit
                 </button>
@@ -147,6 +160,7 @@
 @section('scripts')
     <script src="{{ asset('vendor/purple-admin-pro/assets/vendors/select2/select2.min.js') }}"></script>
     <script src="{{ asset('vendor/purple-admin-pro/assets/js/select2.js') }}"></script>
+    <script src="{{ asset('vendor/purple-admin-pro/assets/js/file-upload.js') }}"></script>
 
     <script type="text/javascript">
         var select2 = $(".js-example-basic-multiple").select2({
