@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Expertise;
 
 class DoctorsTableSeeder extends Seeder
 {
@@ -11,6 +12,11 @@ class DoctorsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Doctor', 2)->create();
+        factory('App\Doctor', 2)->create()->each(function($doctor) {
+            $take = random_int(1, 2);
+            $expertises = Expertise::inRandomOrder()->take($take)->get();
+
+            $doctor->expertises()->sync($expertises);
+        });
     }
 }

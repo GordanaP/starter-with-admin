@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Doctor;
+use App\Expertise;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -25,7 +26,9 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('doctors.create');
+        $expertises = Expertise::all();
+
+        return view('doctors.create', compact('expertises'));
     }
 
     /**
@@ -36,7 +39,11 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $doctor = Doctor::create($request->all());
+
+        $doctor->expertises()->sync($request->expertise_id);
+
+        return back();
     }
 
     /**
