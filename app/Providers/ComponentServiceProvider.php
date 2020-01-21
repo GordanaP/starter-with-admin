@@ -28,5 +28,6 @@ class ComponentServiceProvider extends ServiceProvider
         Blade::component('components.admin.datatable', 'datatable');
         Blade::component('components.asterisks', 'asterisks');
         Blade::component('components.required_fields', 'requiredFields');
+        Blade::component('components.upload_file', 'uploadFile');
     }
 }

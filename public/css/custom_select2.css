@@ -1,0 +1,6 @@
+.select2-selection.select2-selection--multiple {
+    height: 42px !important;
+    overflow: hidden !important;
+    padding-top: 4px !important;
+    padding-left: 6px !important
+}

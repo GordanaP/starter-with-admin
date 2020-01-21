@@ -8,15 +8,15 @@ use App\Services\ManageImage\AbstractImage;
 class DoctorImage extends AbstractImage implements ImageManager
 {
     /**
-     * Manage the image.
+     * Manage the image store/remove.
      *
      * @param  \App\Doctor $doctor
-     * @param  array $data
+     * @param  \Illuminate\Http\UploadedFile $file
      */
-    public function manage($doctor, $data)
+    public function manage($doctor, $file)
     {
         $this->setDisk('doctors')
             ->setRelationship($doctor->image())
-            ->handle($doctor->image, $data);
+            ->handle($doctor->image, $file);
     }
 }

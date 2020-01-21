@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\DatePresenter;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
@@ -58,5 +59,16 @@ class Doctor extends Model
     public function hasImage()
     {
         return $this->image;
+    }
+
+    /**
+     * Get the doctor's image.
+     *
+     * @return \Illuminate\Http\UploadedFile
+     */
+    public function getImage()
+    {
+        return $this->hasImage() ? App::make('doctor_image')->getUrl($this->image)
+            : asset('images/no_image.svg');
     }
 }

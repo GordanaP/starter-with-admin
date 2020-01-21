@@ -3,6 +3,7 @@
 namespace App\Services\ManageImage;
 
 use Storage;
+use App\Utilities\UploadImageRadio;
 
 abstract class AbstractImage
 {
@@ -28,19 +29,49 @@ abstract class AbstractImage
     private $pathAttribute = 'path';
 
     /**
+     * The manage image request.
+     *
+     * @var string
+     */
+    private $manage_image;
+
+    /**
+     * The manage image request value.
+     *
+     * @var string
+     */
+    private $upload_image;
+
+    /**
+     * The manage image request value.
+     *
+     * @var string
+     */
+    private $remove_image;
+
+    /**
+     * Create a new class instance.
+     */
+    public function __construct()
+    {
+        $this->manage_image = request(UploadImageRadio::get()->name);
+        $this->upload_image = UploadImageRadio::get()->values()[0];
+        $this->remove_image = UploadImageRadio::get()->values()[1];
+    }
+
+    /**
      * Manage the model's image.
      *
      * @param  \App\Model $model
-     * @param  array $data
-     * @return mixed
+     * @param  \Illuminate\Http\UploadedFile $file
      */
-    protected abstract function manage($model, $data);
+    protected abstract function manage($model, $file);
 
     /**
      * The image url.
      *
      * @param  \App\Image $image
-     * @return \Illuminate\Contracts\Filesystem\Filesystem
+     * @return string
      */
     public function getUrl($image = null)
     {
@@ -76,7 +107,7 @@ abstract class AbstractImage
     /**
      * Set the relationship with the imageable model.
      *
-     * @param \Illuminate\Database\Eloquent\Relations $relationship
+     * @param \Illuminate\Database\Eloquent\Relations\MorphOne $relationship
      */
     protected function setRelationship($relationship)
     {
@@ -86,15 +117,22 @@ abstract class AbstractImage
     }
 
     /**
-     * Handle the image in the database.
+     * Handle the image store/remove.
      *
      * @param  \App\Image $image
-     * @param  array $data
+     * @param  \Illuminate\Http\UploadedFile $file
      */
-    protected function handle($image, $data = null)
+    protected function handle($image, $file = null)
     {
-        if($data) {
-            $image == null ? $this->add($data) : $this->update($image, $data);
+        if(! $this->manage_image || $this->manage_image == $this->upload_image) {
+            if($file) {
+                $image == null ? $this->add($file) : $this->update($image, $file);
+            }
+        }
+
+        if($this->manage_image == $this->remove_image) {
+            $this->removeStoragePath($image);
+            $image->delete();
         }
     }
 
@@ -102,61 +140,61 @@ abstract class AbstractImage
      * Update the image.
      *
      * @param  \App\Image $image
-     * @param  array $data
+     * @param  \Illuminate\Http\UploadedFile $file
      */
-    private function update($image, $data)
+    private function update($image, $file)
     {
         $this->removeStoragePath($image);
 
-        $this->save($image, $data);
+        $this->save($image, $file);
     }
 
     /**
      * Save the image.
      *
      * @param  \App\Image $image
-     * @param  array $data
+     * @param  \Illuminate\Http\UploadedFile $file
      */
-    private function save($image, $data)
+    private function save($image, $file)
     {
         $pathAttribute = $this->pathAttribute;
 
-        $image->$pathAttribute = $this->makeStoragePath($data);
+        $image->$pathAttribute = $this->makeStoragePath($file);
 
         $image->save();
     }
 
     /**
-     * Create image.
+     * Create image model.
      *
-     * @param array $data
+     * @param \Illuminate\Http\UploadedFile $file
      */
-    private function add($data)
+    private function add($file)
     {
-        $this->relationship->create($this->path($data));
+        $this->relationship->create($this->path($file));
     }
 
     /**
      * The image path.
      *
-     * @param  array $data
-     * @return string
+     * @param  \Illuminate\Http\UploadedFile $file
+     * @return array
      */
-    protected function path($data)
+    protected function path($file)
     {
         return [
-            $this->pathAttribute => $this->makeStoragePath($data)
+            $this->pathAttribute => $this->makeStoragePath($file)
         ];
     }
 
     /**
      * The storage path.
      *
-     * @param  array $data
-     * @return \Illuminate\Contracts\Filesystem\Filesystem
+     * @param  \Illuminate\Http\UploadedFile $file
+     * @return \Illuminate\Http\UploadedFile
      */
-    private function makeStoragePath($data = null)
+    private function makeStoragePath($file = null)
     {
-        return optional($data)->store($this->disk);
+        return optional($file)->store($this->disk);
     }
 }

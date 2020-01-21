@@ -176,6 +176,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ComponentServiceProvider::class,
         App\Providers\ImageServiceProvider::class,
+        App\Providers\UtilityServiceProvider::class,
+        App\Providers\ViewComposerServiceProvider::class,
 
     ],
 

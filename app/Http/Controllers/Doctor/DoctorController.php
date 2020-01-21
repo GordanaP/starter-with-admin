@@ -100,7 +100,13 @@ class DoctorController extends Controller
      */
     public function update(Request $request, Doctor $doctor)
     {
-        //
+        $doctor->update($request->all());
+
+        $doctor->expertises()->sync($request->expertise_id);
+
+        $this->imageManager->manage($doctor, $request->image);
+
+        return back();
     }
 
     /**
