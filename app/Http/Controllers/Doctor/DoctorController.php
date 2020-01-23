@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Doctor;
 use App\Expertise;
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Contracts\ImageManager;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\DoctorRequest;
+use Illuminate\Http\RedirectResponse;
 use App\Services\ManageImage\DoctorImage;
 
 class DoctorController extends Controller
@@ -30,20 +33,16 @@ class DoctorController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() : View
     {
         return view('doctors.index');
     }
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() : View
     {
         $expertises = Expertise::all();
 
@@ -53,10 +52,9 @@ class DoctorController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Http\Requests\DoctorRequest  $request
      */
-    public function store(Request $request)
+    public function store(DoctorRequest $request) : RedirectResponse
     {
         $doctor = Doctor::create($request->all());
 
@@ -71,9 +69,8 @@ class DoctorController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Doctor  $doctor
-     * @return \Illuminate\Http\Response
      */
-    public function show(Doctor $doctor)
+    public function show(Doctor $doctor): View
     {
         return view('doctors.show', compact('doctor'));
     }
@@ -82,9 +79,8 @@ class DoctorController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Doctor  $doctor
-     * @return \Illuminate\Http\Response
      */
-    public function edit(Doctor $doctor)
+    public function edit(Doctor $doctor) : View
     {
         $expertises = Expertise::all();
 
@@ -94,11 +90,10 @@ class DoctorController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\DoctorRequest  $request
      * @param  \App\Doctor  $doctor
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doctor $doctor)
+    public function update(DoctorRequest $request, Doctor $doctor) : RedirectResponse
     {
         $doctor->update($request->all());
 
@@ -113,9 +108,8 @@ class DoctorController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Doctor  $doctor
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Doctor $doctor)
+    public function destroy(Doctor $doctor) : RedirectResonse
     {
         //
     }

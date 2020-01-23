@@ -18,14 +18,14 @@ class CreateDoctorsTable extends Migration
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('graduation', 199);
-            $table->smallInteger('graduation_year');
+            $table->year('graduation_year');
             $table->string('board_certification', 199)->nullable();
-            $table->smallInteger('certification_year')->nullable();
+            $table->year('certification_year')->nullable();
             $table->string('academic_title', 199)->nullable();
-            $table->text('academic_affiliaton', 300)->nullable();
-            $table->text('hospital_affiliaton', 300)->nullable();
+            $table->text('academic_affiliation', 500)->nullable();
+            $table->text('hospital_affiliation', 500)->nullable();
             $table->text('administrative_position', 300)->nullable();
-            $table->text('training')->nullable();
+            $table->text('training', 1000)->nullable();
             $table->timestamps();
         });
     }

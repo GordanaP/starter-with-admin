@@ -7,3 +7,5 @@
         type="button">Upload</button>
     </span>
 </div>
+@invalid(['field' => $name]) @endinvalid
+

@@ -29,5 +29,6 @@ class ComponentServiceProvider extends ServiceProvider
         Blade::component('components.asterisks', 'asterisks');
         Blade::component('components.required_fields', 'requiredFields');
         Blade::component('components.upload_file', 'uploadFile');
+        Blade::component('components.invalid_field', 'invalid');
     }
 }

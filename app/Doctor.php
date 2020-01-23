@@ -18,7 +18,7 @@ class Doctor extends Model
     protected $fillable = [
         'first_name', 'last_name', 'graduation','graduation_year', 'training',
         'board_certification', 'certification_year', 'academic_title',
-        'academic_affiliaton', 'hospital_affiliaton', 'administrative_position'
+        'academic_affiliation', 'hospital_affiliation', 'administrative_position'
     ];
 
     /**

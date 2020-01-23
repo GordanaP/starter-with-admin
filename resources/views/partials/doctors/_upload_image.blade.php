@@ -24,5 +24,7 @@
                 </label>
             </div>
         @endif
+
+        @invalid(['field' => $manage_image]) @endinvalid
     </div>
 </div>
