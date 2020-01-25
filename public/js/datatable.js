@@ -21,3 +21,7 @@ $.fn.columnCount = function() {
 $.fn.columnIndex = function(index = 1) {
     return $(this).columnCount() - index;
 };
+
+function reloadDataTable(datatable) {
+    datatable.ajax.reload();
+}

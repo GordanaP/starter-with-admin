@@ -180,7 +180,6 @@
 
 @section('scripts')
     <script src="{{ asset('vendor/purple-admin-pro/assets/vendors/select2/select2.min.js') }}"></script>
-    <script src="{{ asset('vendor/purple-admin-pro/assets/js/select2.js') }}"></script>
     <script src="{{ asset('vendor/purple-admin-pro/assets/js/file-upload.js') }}"></script>
     <script src="{{ asset('vendor/purple-admin-pro/assets/vendors/jquery-validation/jquery.validate.min.js') }}"></script>
     <script src="{{ asset('vendor/purple-admin-pro/assets/vendors/bootstrap-maxlength/bootstrap-maxlength.min.js') }}"></script>
@@ -188,8 +187,10 @@
     <script src="{{ asset('js/custom_select2.js') }}"></script>
     <script src="{{ asset('js/custom_datepicker.js') }}"></script>
     <script src="{{ asset('js/custom_validation.js') }}"></script>
+    <script src="{{ asset('js/form_helpers.js') }}"></script>
 
     <script>
-        maxLength('#training, #academic_affiliation, #hospital_affiliation, #administrative_position ')
+        maxLength('#training, #academic_affiliation, #hospital_affiliation, #administrative_position ');
+
     </script>
 @endsection

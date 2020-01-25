@@ -9,8 +9,10 @@ use Illuminate\Http\Request;
 use App\Contracts\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DoctorRequest;
+use App\Http\Requests\DoctorDeleteRequest;
 use Illuminate\Http\RedirectResponse;
 use App\Services\ManageImage\DoctorImage;
+use App\Repositories\DoctorRepository;
 
 class DoctorController extends Controller
 {
@@ -20,15 +22,17 @@ class DoctorController extends Controller
      * @var App\Contracts\ImageManager
      */
     private $imageManager;
+    private $doctors;
 
     /**
      * Create a new class instance.
      *
      * @param App\Contracts\ImageManager $imageManager
      */
-    public function __construct(ImageManager $imageManager)
+    public function __construct(ImageManager $imageManager, DoctorRepository $doctors)
     {
         $this->imageManager = $imageManager;
+        $this->doctors = $doctors;
     }
 
     /**
@@ -108,9 +112,14 @@ class DoctorController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Doctor  $doctor
+     * @param  \App\Http\Requests\  $request
      */
-    public function destroy(Doctor $doctor) : RedirectResonse
+    public function destroy(DoctorDeleteRequest $request, Doctor $doctor = null)
     {
-        //
+        $this->doctors->delete($doctor ?? $request->ids);
+
+        return response([
+            'message' => 'The record has been deleted.',
+        ]);
     }
 }

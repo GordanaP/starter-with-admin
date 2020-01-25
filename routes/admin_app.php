@@ -10,11 +10,11 @@ Route::namespace('Admin')->group(function(){
 /**
  * Doctor
  */
-Route::name('admin.')->namespace('Doctor')
+Route::namespace('Doctor')
     ->group(function(){
         Route::get('doctors/list', 'DoctorAjaxController@index');
-        // Route::delete('doctors/{doctor?}', 'DoctorController@destroy')
-        //     ->name('doctors.destroy');
-        Route::resource('doctors', 'DoctorController')
+        Route::delete('doctors/{doctor?}', 'DoctorController@destroy')
+            ->name('admin.doctors.destroy');
+        Route::name('admin')->resource('doctors', 'DoctorController')
             ->except('destroy');
     });

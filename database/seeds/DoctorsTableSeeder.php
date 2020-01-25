@@ -12,7 +12,7 @@ class DoctorsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Doctor', 2)->create()->each(function($doctor) {
+        factory('App\Doctor', 10)->create()->each(function($doctor) {
             $take = random_int(1, 2);
             $expertises = Expertise::inRandomOrder()->take($take)->get();
 

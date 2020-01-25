@@ -20,3 +20,5 @@
 <link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/vendors/mdi/css/materialdesignicons.min.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/purple-admin-pro/assets/css/demo_1/style.css') }}">
 <link rel="shortcut icon" href="{{ asset('vendor/purple-admin-pro/assets/images/favicon.png') }}" />
+
+<link href="{{ asset('css/custom.css') }}" rel="stylesheet">

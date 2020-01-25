@@ -7,6 +7,9 @@
 @endsection
 
 @section('content')
+
+    @include('alerts._error')
+
     @adminPageHeader(['title' => 'Doctors', 'item' => 'Doctors'])
     @endadminPageHeader
 
@@ -19,6 +22,7 @@
 @endsection
 
 @section('scripts')
+
     @include('partials.datatables._scripts'),
 
     <script>
@@ -29,5 +33,6 @@
 
         @include('partials.datatables._delete_records')
 
-    </script>
+    </script>s
+
 @endsection
