@@ -30,27 +30,15 @@ var datatable = table(records).DataTable({
             data: 'full_name',
         },
         {
-            data: 'expertises',
-            render: function ( data, type, row, meta ) {
-
-                var result = '';
-
-                $.each(data, function( index, expertise ) {
-
-                    result = result + '<a href="#">' + expertise.field + '</a>';
-
-                    if (index < data.length - 1) {
-                        result = result + ', ';
-                    }
-                });
-
-                return result;
-            }
+            data: 'date_of_birth',
         },
         {
-            data: 'patients_count',
+            data: 'medical_record',
+        },
+        {
+            data: 'doctor',
             render: function(data, type, row, meta) {
-              return '<a href="' + row.link.show_patients + '">'+ data +'</a>'
+              return '<a href="' + row.link.show_doctor + '">'+ data +'</a>'
             },
         },
         {
@@ -69,10 +57,6 @@ var datatable = table(records).DataTable({
         {
             targets: table(records).columnIndex(),
             className: 'dt-body-right'
-        },
-        {
-            targets: [4],
-            className: 'dt-body-center'
         },
     ],
     "order": [

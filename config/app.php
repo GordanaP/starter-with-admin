@@ -178,6 +178,8 @@ return [
         App\Providers\ImageServiceProvider::class,
         App\Providers\UtilityServiceProvider::class,
         App\Providers\ViewComposerServiceProvider::class,
+        App\Providers\DirectiveServiceProvider::class,
+        App\Providers\ObserverServiceProvider::class,
 
     ],
 

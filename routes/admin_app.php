@@ -8,6 +8,18 @@ Route::namespace('Admin')->group(function(){
 });
 
 /**
+ * Patient
+ */
+Route::namespace('Patient')
+    ->group(function(){
+        Route::get('patients/list', 'PatientAjaxController@index');
+        Route::delete('patients/{patient?}', 'PatientController@destroy')
+            ->name('admin.patients.destroy');
+        Route::name('admin')->resource('patients', 'PatientController')
+            ->except('destroy');
+    });
+
+/**
  * Doctor
  */
 Route::namespace('Doctor')

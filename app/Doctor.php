@@ -52,6 +52,16 @@ class Doctor extends Model
     }
 
     /**
+     * The patients that belong to the doctor.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function patients()
+    {
+        return $this->hasMany(Patient::class);
+    }
+
+    /**
      * Determine if the doctor has an image.
      *
      * @return boolean

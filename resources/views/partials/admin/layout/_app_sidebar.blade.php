@@ -20,8 +20,11 @@
                 <i class="mdi mdi-home menu-icon"></i>
             </a>
         </li>
+
+        <!-- Doctors -->
         <li class="nav-item">
-            <a class="nav-link py-2" data-toggle="collapse" href="#accounts" aria-expanded="false" aria-controls="accounts">
+            <a class="nav-link py-2" data-toggle="collapse" href="#accounts"
+            aria-expanded="false" aria-controls="accounts">
                 <span class="menu-title">Doctors</span>
                 <i class="menu-arrow"></i>
                 <i class="mdi mdi-stethoscope menu-icon"></i>
@@ -29,10 +32,34 @@
             <div class="collapse" id="accounts">
                 <ul class="nav flex-column sub-menu mb-0">
                     <li class="nav-item">
-                        <a class="nav-link py-2" href="{{ route('admin.doctors.index') }}">View all</a>
+                        <a class="nav-link py-2"
+                        href="{{ route('admin.doctors.index') }}">View all</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link py-2" href="{{ route('admin.doctors.create') }}">Add new</a>
+                        <a class="nav-link py-2"
+                        href="{{ route('admin.doctors.create') }}">Add new</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        <!-- Patients -->
+        <li class="nav-item">
+            <a class="nav-link py-2" data-toggle="collapse" href="#patients"
+            aria-expanded="false" aria-controls="patients">
+                <span class="menu-title">Patients</span>
+                <i class="menu-arrow"></i>
+                <i class="mdi mdi-account-box menu-icon"></i>
+            </a>
+            <div class="collapse" id="patients">
+                <ul class="nav flex-column sub-menu mb-0">
+                    <li class="nav-item">
+                        <a class="nav-link py-2"
+                        href="{{ route('admin.patients.index') }}">View all</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link py-2"
+                        href="{{ route('admin.patients.create') }}">Add new</a>
                     </li>
                 </ul>
             </div>

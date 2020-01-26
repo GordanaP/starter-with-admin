@@ -1,6 +1,6 @@
 @extends('layouts.admin.app_dashboard')
 
-@section('title', 'Doctors')
+@section('title', 'Patients')
 
 @section('links')
     @include('partials.datatables._links'),
@@ -10,14 +10,15 @@
 
     @include('alerts._error')
 
-    @adminPageHeader(['title' => 'Doctors', 'route' => route('admin.doctors.index')])
+    @adminPageHeader(['title' => 'Patients', 'route' => route('admin.patients.index')])
     @endadminPageHeader
 
-    @datatable(['records' => 'Doctors'])
+    @datatable(['records' => 'Patients'])
         <th>Id</th>
         <th>Name</th>
-        <th>Expertises</th>
-        <th class="text-center">Patients</th>
+        <th>Birth Date</th>
+        <th>Medical Record</th>
+        <th>Doctor</th>
     @enddatatable
 @endsection
 
@@ -27,12 +28,12 @@
 
     <script>
 
-        var records = 'Doctors';
+        var records = 'Patients';
 
-        @include('partials.doctors._datatable')
+        @include('partials.patients._datatable')
 
         @include('partials.datatables._delete_records')
 
-    </script>s
+    </script>
 
 @endsection

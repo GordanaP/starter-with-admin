@@ -15,7 +15,8 @@ class CreateExpertisesTable extends Migration
     {
         Schema::create('expertises', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('field', 199);
+            $table->string('field', 100)->unique();
+            $table->string('slug');
             $table->timestamps();
         });
     }
