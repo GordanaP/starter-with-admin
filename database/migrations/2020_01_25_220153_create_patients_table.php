@@ -18,7 +18,7 @@ class CreatePatientsTable extends Migration
 
             $table->unsignedInteger('doctor_id')->nullable();
             $table->foreign('doctor_id')->references('id')->on('doctors')
-                ->oDelete('set NULL');
+                ->onDelete('set NULL');
 
             $table->string('medical_record');
             $table->string('first_name');

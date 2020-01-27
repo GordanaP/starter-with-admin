@@ -3,9 +3,6 @@
 @section('title', 'Edit Doctor')
 
 @section('content')
-    @parsedown ($doctor->training)
-    @endparsedown
-
     <div class="card px-4">
         <div class="card-body">
             @include('partials.doctors._form', [

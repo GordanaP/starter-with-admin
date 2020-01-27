@@ -29,6 +29,8 @@
     <script>
 
         var records = 'Patients';
+        var parent = null;
+        var parentId = null;
 
         @include('partials.patients._datatable')
 

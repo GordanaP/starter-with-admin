@@ -29,4 +29,5 @@ Route::namespace('Doctor')
             ->name('admin.doctors.destroy');
         Route::name('admin')->resource('doctors', 'DoctorController')
             ->except('destroy');
+        Route::get('doctors/{doctor}/patients/list', 'DoctorPatientAjaxController@index');
     });

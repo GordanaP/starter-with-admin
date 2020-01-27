@@ -22,12 +22,19 @@ class DoctorController extends Controller
      * @var App\Contracts\ImageManager
      */
     private $imageManager;
+
+    /**
+     * The doctors.
+     *
+     * @var \App\Repositories\DoctorRepository
+     */
     private $doctors;
 
     /**
      * Create a new class instance.
      *
-     * @param App\Contracts\ImageManager $imageManager
+     * @param \App\Contracts\ImageManager $imageManager
+     * @param \App\Repositories\DoctorRepository $doctors
      */
     public function __construct(ImageManager $imageManager, DoctorRepository $doctors)
     {
@@ -118,8 +125,12 @@ class DoctorController extends Controller
     {
         $this->doctors->delete($doctor ?? $request->ids);
 
-        return response([
-            'message' => 'The record has been deleted.',
-        ]);
+        if($request->ajax()) {
+            return response([
+                'message' => 'The record has been deleted.',
+            ]);
+        } else {
+            return redirect()->route('admin.doctors.index');
+        }
     }
 }

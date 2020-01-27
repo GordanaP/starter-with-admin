@@ -3,7 +3,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">
-                <a href="{{ $route }}">
+                <a href="{{ $route ?? '' }}">
                     {{ $item ?? $title }}
                 </a>
             </li>
