@@ -4,6 +4,7 @@
 
 use App\Doctor;
 use App\Patient;
+use Carbon\Carbon;
 use Faker\Generator as Faker;
 
 $factory->define(Patient::class, function (Faker $faker) {
@@ -11,8 +12,7 @@ $factory->define(Patient::class, function (Faker $faker) {
         'doctor_id' => Doctor::inRandomOrder()->first()->id,
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'medical_record' => $faker->randomNumber,
-        'birthday' => $faker->date($format = 'Y-m-d', $max = \Carbon\Carbon::now()->subYears(20)),
+        'birthday' => $faker->date($format = 'Y-m-d', $max = Carbon::now()->subYears(20)),
         'street_address' => $faker->streetAddress,
         'city' => $faker->city,
         'country' => $faker->country,

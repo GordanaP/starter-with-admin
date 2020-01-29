@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Utilities\Presenter;
 use Illuminate\Support\ServiceProvider;
 
 class UtilityServiceProvider extends ServiceProvider
@@ -13,7 +14,7 @@ class UtilityServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->instance('presenter', new Presenter);
     }
 
     /**

@@ -17,13 +17,13 @@ class PatientResource extends JsonResource
         return [
             'id' => $this->id,
             'full_name' => $this->full_name,
-            'date_of_birth' => $this->birthday->format('d m Y'),
-            'medical_record' => $this->medical_record,
-            'doctor' => $this->doctor->full_name,
+            'date_of_birth' => $this->birthday,
+            'medical_record' => $this->mrn,
+            'doctor' => optional($this->doctor)->full_name,
             'link' => [
                 'show' => route('admin.patients.show', $this),
                 'edit' => route('admin.patients.edit', $this),
-                'show_doctor' => '#',
+                'show_doctor' => route('admin.doctors.show', $this->doctor),
             ]
         ];
     }

@@ -26,6 +26,9 @@ class ComponentServiceProvider extends ServiceProvider
     {
         Blade::component('components.admin.page_header', 'adminPageHeader');
         Blade::component('components.admin.datatable', 'datatable');
+        Blade::component('components.admin.tab_pane', 'adminTabPane');
+        Blade::component('components.admin.tab_nav', 'adminTabNav');
+        Blade::component('components.admin.delete_form', 'deleteForm');
         Blade::component('components.asterisks', 'asterisks');
         Blade::component('components.required_fields', 'requiredFields');
         Blade::component('components.upload_file', 'uploadFile');

@@ -12,7 +12,7 @@ class Patient extends Model
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'medical_record', 'birthday',
+        'first_name', 'last_name', 'mrn', 'birthday',
         'street_address', 'city', 'country', 'phone'
     ];
 
@@ -21,7 +21,7 @@ class Patient extends Model
      *
      * @var array
      */
-    protected $dates = ['birthday'];
+    // protected $dates = ['birthday'];
 
     /**
      * The patient's full name.

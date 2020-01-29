@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\ViewComposers\Countries;
 use App\ViewComposers\UploadImage;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -26,5 +27,6 @@ class ViewComposerServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('partials.doctors._upload_image', UploadImage::class);
+        View::composer('partials.patients._form', Countries::class);
     }
 }

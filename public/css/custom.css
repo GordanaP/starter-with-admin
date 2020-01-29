@@ -1,1 +1,5 @@
 .invalid-feedback { display: none }
+a.a-primary { color: #b66dff; text-decoration: none}
+a.a-primary:hover { color: #9933ff;}
+.admin-tabs-table tr td { border: none }
+ul {padding-left: 0px}

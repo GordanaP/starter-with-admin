@@ -20,14 +20,14 @@ class CreatePatientsTable extends Migration
             $table->foreign('doctor_id')->references('id')->on('doctors')
                 ->onDelete('set NULL');
 
-            $table->string('medical_record');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('first_name', 50);
+            $table->string('last_name', 50);
             $table->date('birthday');
-            $table->string('street_address');
-            $table->string('city');
+            $table->string('street_address', 199);
+            $table->string('city', 100);
             $table->string('country')->default('RS');
             $table->string('phone');
+            $table->string('mrn')->unique();
             $table->timestamps();
         });
     }

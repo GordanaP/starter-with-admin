@@ -37,7 +37,7 @@ var datatable = table(records).DataTable({
 
                 $.each(data, function( index, expertise ) {
 
-                    result = result + '<a href="#">' + expertise.field + '</a>';
+                    result = result + '<a href="#" class="a-primary">' + expertise.field + '</a>';
 
                     if (index < data.length - 1) {
                         result = result + ', ';

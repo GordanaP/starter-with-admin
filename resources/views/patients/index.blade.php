@@ -17,7 +17,7 @@
         <th>Id</th>
         <th>Name</th>
         <th>Birth Date</th>
-        <th>Medical Record</th>
+        <th>MRN</th>
         <th>Doctor</th>
     @enddatatable
 @endsection

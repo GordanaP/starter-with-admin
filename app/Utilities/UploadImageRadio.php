@@ -2,19 +2,21 @@
 
 namespace App\Utilities;
 
-use App\Utilities\Radio;
+use App\Utilities\Arr;
 
-class UploadImageRadio extends Radio
+class UploadImageRadio extends Arr
 {
     /**
-     * { @inheritDocs }
+     * The radio name.
+     *
+     * @var string
      */
     public $name = 'manage_image';
 
     /**
      * { @inheritDocs }
      */
-    public $buttons = [
+    public $array = [
         'Upload image' => 'upload_image',
         'Remove image' => 'remove_image',
     ];

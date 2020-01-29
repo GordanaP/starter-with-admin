@@ -3,6 +3,9 @@
 @section('title', 'Edit Doctor')
 
 @section('content')
+    @adminPageHeader(['title' => $doctor->full_name, 'item' => 'Doctors', 'subtitle' => "Edit"])
+    @endadminPageHeader
+
     <div class="card px-4">
         <div class="card-body">
             @include('partials.doctors._form', [
