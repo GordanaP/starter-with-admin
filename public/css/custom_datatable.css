@@ -1,5 +1,5 @@
-.dt-button.purple { background: #e9d8fd; border: 1px solid #b794f4;}
-.dt-button.purple:hover { color: white; background: #d6bcfa !important; border: 1px solid #9f7aea;}
+.dt-button.inverse-dark { background: rgba(62, 75, 91, 0.2); border: 1px solid rgba(62, 75, 91, 0);}
+.dt-button.inverse-dark:hover { color: white; background: #3e4b5b !important; border: 1px solid #3e4b5b9f7aea;}
 .dt-button.delete-checked {display: none; background: #f56565; border: 1px solid #f565655 !important; }
 .dt-button.delete-checked:hover {background: #e53e3e !important; border: 1px solid #f565655 !important;}
 .admin-table { color: #718096 !important; border-bottom-color: #ebedf2 !important}

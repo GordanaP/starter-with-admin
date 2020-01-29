@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    @adminPageHeader(['title' => 'Doctor profile', 'item' => 'Doctors', 'subtitle' => "Profile"])
+    @adminPageHeader(['title' => 'Doctor\'s profile', 'item' => 'Doctors', 'subtitle' => "Profile"])
     @endadminPageHeader
 
     <div class="card">
@@ -15,7 +15,7 @@
             <h6 class="text-primary font-weight-bold text-uppercase tracking-wider">
                 {{ $doctor->full_name }}
 
-                <div class="row pull-right mb-4">
+                <div class="pull-right mb-4">
                     <div class="btn-group" role="group" aria-label="Basic example">
 
                         @deleteForm(['route' => route('admin.doctors.destroy', $doctor)])
@@ -31,9 +31,7 @@
 
             <p class="text-gray-500">Ophthalmologist</p>
 
-            @include('partials.doctors.details._tabs', [
-                'doctor' => $doctor
-            ])
+            @include('partials.doctors.details._tabs')
         </div>
     </div>
 @endsection

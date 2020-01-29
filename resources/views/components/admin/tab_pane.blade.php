@@ -1,6 +1,17 @@
-<div class="tab-pane fade {{ request('patients') ? 'show active' : '' }}"
-id="{{ $title }}-1" role="tabpanel" aria-labelledby="{{ $title }}-tab">
+<div
+    class="tab-pane fade
+        @if (isset($activeHome) == true && ! request('patients'))
+            show active
+        @endif
 
-    {{ $slot }}
+        @if (isset($activePatients) == true && request('patients'))
+            show active
+        @endif
+    "
+    id="{{ $title }}-1"
+    role="tabpanel"
+    aria-labelledby="{{ $title }}-tab"
+>
 
+        {{ $slot }}
 </div>

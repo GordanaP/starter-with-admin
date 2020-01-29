@@ -38,7 +38,7 @@ var datatable = table(records).DataTable({
         {
             data: 'doctor',
             render: function(data, type, row, meta) {
-              return '<a href="' + row.link.show_doctor + '">'+ data +'</a>'
+              return '<a href="' + row.link.show_doctor + '" class="a-primary">'+ data +'</a>'
             },
         },
         {

@@ -5,7 +5,7 @@
         key: 'c',
         altKey: true
     },
-    className: 'purple'
+    className: 'inverse-dark'
 },
 {
     extend: 'excel',
@@ -14,7 +14,7 @@
         key: 'x',
         altKey: true
     },
-    className: 'purple'
+    className: 'inverse-dark'
 },
 {
     extend: 'pdf',
@@ -23,7 +23,7 @@
         key: 'd',
         altKey: true
     },
-    className: 'purple'
+    className: 'inverse-dark'
 },
 {
     extend: 'colvis',
@@ -32,5 +32,5 @@
         key: 'v',
         altKey: true
     },
-    className: 'purple'
+    className: 'inverse-dark'
 }

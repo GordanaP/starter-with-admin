@@ -50,7 +50,7 @@ var datatable = table(records).DataTable({
         {
             data: 'patients_count',
             render: function(data, type, row, meta) {
-              return '<a href="' + row.link.show_patients + '">'+ data +'</a>'
+              return '<a href="' + row.link.show_patients + '" class="a-primary">'+ data +'</a>'
             },
         },
         {
