@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    @adminPageHeader(['title' => 'Calendar', 'item' => 'Apps'])
+    @adminPageHeader(['title' => 'Calendar', 'item' => 'Apps', 'route' => route('admin.apps.calendar')])
     @endadminPageHeader
 
     <div class="row">

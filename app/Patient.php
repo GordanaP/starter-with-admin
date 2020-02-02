@@ -18,6 +18,13 @@ class Patient extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['full_name'];
+
+    /**
      * The patient's full name.
      *
      * @return string
@@ -46,5 +53,15 @@ class Patient extends Model
     public function doctor()
     {
         return $this->belongsTo(Doctor::class);
+    }
+
+    /**
+     * Get the patients's appointments.
+     *
+     * @return  \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
     }
 }

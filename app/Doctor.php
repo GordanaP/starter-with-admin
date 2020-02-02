@@ -62,6 +62,16 @@ class Doctor extends Model
     }
 
     /**
+     * Get the doctor's appointments.
+     *
+     * @return  \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    /**
      * Determine if the doctor has an image.
      *
      * @return boolean
