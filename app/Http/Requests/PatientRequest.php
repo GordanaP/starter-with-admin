@@ -27,22 +27,23 @@ class PatientRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name'=> 'required|max:50',
-            'last_name'=> 'required|max:50',
+            'first_name'=> 'sometimes|required|max:50',
+            'last_name'=> 'sometimes|required|max:50',
             'birthday' => [
-                'required',
+                'sometimes','required',
                 'date_format:Y-m-d',
                 'before:today()',
                 new AgeLimit
             ],
-            'street_address' => 'required|max:199',
-            'city' => 'required|max:100',
+            'street_address' => 'sometimes|required|max:199',
+            'city' => 'sometimes|required|max:100',
             'country' => [
-                'required',
+                'sometimes', 'required',
                 Rule::in(CountryList::get()->values())
             ],
-            'phone' => 'required',
-            'doctor_id' => 'required|exists:doctors,id',
+            'phone' => 'sometimes|required',
+            'doctor_id' => 'sometimes|required|exists:doctors,id',
+            'ids' => 'sometimes|exists:patients,id',
         ];
     }
 }

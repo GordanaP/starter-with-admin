@@ -13,7 +13,7 @@
     @adminPageHeader(['title' => 'Patients', 'route' => route('admin.patients.index')])
     @endadminPageHeader
 
-    @datatable(['records' => 'Patients'])
+    @datatable(['records' => 'Patients', 'route' => route('admin.patients.create')])
         <th>Id</th>
         <th>Name</th>
         <th>Birth Date</th>

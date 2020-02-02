@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    @adminPageHeader(['title' => 'Themify icons', 'item' => 'Icons'])
+    @adminPageHeader(['title' => 'Themify icons', 'item' => 'Icons', 'route' => route('admin.icons.themify')])
     @endadminPageHeader
 
     <div class="row">

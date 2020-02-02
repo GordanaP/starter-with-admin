@@ -3,7 +3,8 @@
 @section('title', 'New Doctor')
 
 @section('content')
-    @adminPageHeader(['title' => 'Doctors', 'subtitle' => "Add new"])
+    @adminPageHeader(['title' => 'New doctor', 'item' => 'Doctors',
+        'subtitle' => "Add new", 'route' => route('admin.doctors.index')])
     @endadminPageHeader
 
     <div class="card px-4">

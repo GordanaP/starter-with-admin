@@ -7,6 +7,7 @@ Route::namespace('Admin')->group(function(){
     Route::get('/dashboard', 'HomeController@dashboard')->name('admin.dashboard');
 });
 
+
 /**
  * Patient
  */
@@ -29,5 +30,7 @@ Route::namespace('Doctor')
             ->name('admin.doctors.destroy');
         Route::name('admin')->resource('doctors', 'DoctorController')
             ->except('destroy');
+        Route::name('admin')->resource('doctors.patients', 'DoctorPatientController')
+            ->only('create');
         Route::get('doctors/{doctor}/patients/list', 'DoctorPatientAjaxController@index');
     });

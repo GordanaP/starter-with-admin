@@ -3,10 +3,9 @@
 namespace App\Providers;
 
 use App\Contracts\ImageManager;
-
+use App\Repositories\DoctorRepository;
 use Illuminate\Support\ServiceProvider;
 use App\Services\ManageImage\DoctorImage;
-use App\Http\Controllers\Doctor\DoctorController;
 
 class ImageServiceProvider extends ServiceProvider
 {
@@ -19,7 +18,7 @@ class ImageServiceProvider extends ServiceProvider
     {
         $this->app->instance('doctor_image', new DoctorImage);
 
-        $this->app->when(DoctorController::class)
+        $this->app->when(DoctorRepository::class)
             ->needs(ImageManager::class)
             ->give(DoctorImage::class);
     }

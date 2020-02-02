@@ -5,24 +5,14 @@ namespace App\Http\Controllers\Doctor;
 use App\Doctor;
 use App\Expertise;
 use Illuminate\View\View;
-use Illuminate\Http\Request;
-use App\Contracts\ImageManager;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DoctorRequest;
 use App\Http\Requests\DoctorDeleteRequest;
 use Illuminate\Http\RedirectResponse;
-use App\Services\ManageImage\DoctorImage;
 use App\Repositories\DoctorRepository;
 
 class DoctorController extends Controller
 {
-    /**
-     * The image manager.
-     *
-     * @var App\Contracts\ImageManager
-     */
-    private $imageManager;
-
     /**
      * The doctors.
      *
@@ -33,12 +23,10 @@ class DoctorController extends Controller
     /**
      * Create a new class instance.
      *
-     * @param \App\Contracts\ImageManager $imageManager
      * @param \App\Repositories\DoctorRepository $doctors
      */
-    public function __construct(ImageManager $imageManager, DoctorRepository $doctors)
+    public function __construct(DoctorRepository $doctors)
     {
-        $this->imageManager = $imageManager;
         $this->doctors = $doctors;
     }
 
@@ -67,11 +55,7 @@ class DoctorController extends Controller
      */
     public function store(DoctorRequest $request) : RedirectResponse
     {
-        $doctor = Doctor::create($request->all());
-
-        $doctor->expertises()->sync($request->expertise_id);
-
-        $this->imageManager->manage($doctor, $request->image);
+        $this->doctors->create($request->all());
 
         return back();
     }
@@ -106,11 +90,7 @@ class DoctorController extends Controller
      */
     public function update(DoctorRequest $request, Doctor $doctor) : RedirectResponse
     {
-        $doctor->update($request->all());
-
-        $doctor->expertises()->sync($request->expertise_id);
-
-        $this->imageManager->manage($doctor, $request->image);
+        $this->doctors->update($request->all(), $doctor);
 
         return back();
     }
@@ -121,7 +101,7 @@ class DoctorController extends Controller
      * @param  \App\Doctor  $doctor
      * @param  \App\Http\Requests\  $request
      */
-    public function destroy(DoctorDeleteRequest $request, Doctor $doctor = null)
+    public function destroy(DoctorDeleteRequest $request, Doctor $doctor = null)  : RedirectResponse
     {
         $this->doctors->delete($doctor ?? $request->ids);
 

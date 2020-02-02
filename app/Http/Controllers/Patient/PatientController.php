@@ -104,7 +104,7 @@ class PatientController extends Controller
      *
      * @param  \App\Patient  $patient
      */
-    public function destroy(Request $request, Patient $patient = null)
+    public function destroy(PatientRequest $request, Patient $patient = null)
     {
         $this->patients->delete($patient ?? $request->ids);
 

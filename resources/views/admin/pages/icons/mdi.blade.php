@@ -3,7 +3,8 @@
 @section('title', 'Material Design Icons')
 
 @section('content')
-    @adminPageHeader(['title' => 'Material design icons', 'item' => 'Icons'])
+    @adminPageHeader(['title' => 'Material design icons', 'item' => 'Icons',
+    'route' => route('admin.icons.mdi')])
     @endadminPageHeader
 
     <div class="row">

@@ -10,10 +10,10 @@
 
     @include('alerts._error')
 
-    @adminPageHeader(['title' => 'Doctors', 'route' => route('admin.doctors.index')])
+    @adminPageHeader(['title' => 'Doctors', 'subtitle' => 'All'])
     @endadminPageHeader
 
-    @datatable(['records' => 'Doctors'])
+    @datatable(['records' => 'Doctors', 'route' => route('admin.doctors.create')])
         <th>Id</th>
         <th>Name</th>
         <th>Expertises</th>

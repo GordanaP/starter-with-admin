@@ -7,7 +7,8 @@
 @endsection
 
 @section('content')
-    @adminPageHeader(['title' => 'Doctor\'s profile', 'item' => 'Doctors', 'subtitle' => "Profile"])
+    @adminPageHeader(['title' => 'Doctor\'s profile', 'item' => 'Doctors',
+        'subtitle' => "Profile", 'route' => route('admin.doctors.index')])
     @endadminPageHeader
 
     <div class="card">
@@ -21,8 +22,9 @@
                         @deleteForm(['route' => route('admin.doctors.destroy', $doctor)])
                         @enddeleteForm
 
-                        <a href="{{ route('admin.doctors.edit', $doctor) }}" class="btn btn-warning">
-                            <i class="mdi mdi-file-check"></i>
+                        <a href="{{ route('admin.doctors.edit', $doctor) }}"
+                        class="btn btn-warning">
+                            <i class="mdi mdi-lead-pencil"></i>
                         </a>
 
                     </div>

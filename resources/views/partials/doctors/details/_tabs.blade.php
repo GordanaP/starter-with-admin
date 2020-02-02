@@ -33,7 +33,8 @@
     @endadminTabPane
 
     @adminTabPane(['title'=>'patients', 'activePatients' => true])
-        @datatable(['records' => 'Patients', 'tab_pane' => true])
+        @datatable(['records' => 'Patients', 'route' => route('admin.doctors.patients.create', $doctor),
+        'tab_pane' => true])
             <th>Id</th>
             <th>Name</th>
             <th>Birth Date</th>

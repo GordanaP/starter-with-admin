@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Utilities\Presenter;
+use App\Utilities\CountryList;
 use Illuminate\Support\ServiceProvider;
 
 class UtilityServiceProvider extends ServiceProvider
@@ -15,6 +16,7 @@ class UtilityServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->instance('presenter', new Presenter);
+        $this->app->instance('country-list', new CountryList);
     }
 
     /**

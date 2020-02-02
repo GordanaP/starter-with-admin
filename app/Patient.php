@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Model;
 
 class Patient extends Model
@@ -17,13 +18,6 @@ class Patient extends Model
     ];
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    // protected $dates = ['birthday'];
-
-    /**
      * The patient's full name.
      *
      * @return string
@@ -31,6 +25,17 @@ class Patient extends Model
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * The patient's full address.
+     *
+     * @return string
+     */
+    public function getFullAddressAttribute()
+    {
+        return $this->street_address . ', ' . $this->city . ', '
+        . App::make('country-list')->key($this->country);
     }
 
     /**

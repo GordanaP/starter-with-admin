@@ -23,7 +23,9 @@ class PatientResource extends JsonResource
             'link' => [
                 'show' => route('admin.patients.show', $this),
                 'edit' => route('admin.patients.edit', $this),
-                'show_doctor' => route('admin.doctors.show', $this->doctor),
+                'show_doctor' => $this->doctor
+                    ? route('admin.doctors.show', $this->doctor)
+                    : null ,
             ]
         ];
     }

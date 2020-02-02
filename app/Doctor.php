@@ -81,4 +81,14 @@ class Doctor extends Model
         return $this->hasImage() ? App::make('doctor_image')->getUrl($this->image)
             : asset('images/no_image.svg');
     }
+
+    /**
+     * Add expertises to the doctor.
+     *
+     * @param array $expertises
+     */
+    public function addExpertises($expertises)
+    {
+        $this->expertises()->sync($expertises);
+    }
 }

@@ -100,14 +100,20 @@
         <label for="doctor_id">Doctor:</label>
         <select class="form-control form-control-sm"
         name="doctor_id" id="doctor_id">
-            <option value="">Select a doctor</option>
-            @foreach ($doctors as $doctor)
-                <option value="{{ $doctor->id }}"
-                    {{ select($doctor->id, old('doctor_id', $patient->doctor_id ?? null)) }}
-                >
+            @if (Request::route('doctor'))
+                <option value="{{ $doctor->id }}">
                     {{ $doctor->full_name }}
                 </option>
-            @endforeach
+            @else
+                <option value="">Select a doctor</option>
+                @foreach ($doctors as $doctor)
+                    <option value="{{ $doctor->id }}"
+                        {{ select($doctor->id, old('doctor_id', $patient->doctor_id ?? null)) }}
+                    >
+                        {{ $doctor->full_name }}
+                    </option>
+                @endforeach
+            @endif
         </select>
 
         @invalid(['field' => 'doctor_id']) @endinvalid

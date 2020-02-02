@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Doctor;
 use App\Patient;
 use App\Expertise;
+use App\Observers\DoctorObserver;
 use App\Observers\PatientObserver;
 use App\Observers\ExpertiseObserver;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +31,6 @@ class ObserverServiceProvider extends ServiceProvider
     {
         Expertise::observe(ExpertiseObserver::class);
         Patient::observe(PatientObserver::class);
+        Doctor::observe(DoctorObserver::class);
     }
 }
