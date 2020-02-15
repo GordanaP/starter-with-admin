@@ -3,7 +3,8 @@
 @section('title', 'Buttons')
 
 @section('content')
-    @adminPageHeader(['title' => 'Buttons', 'item' => 'UI Elements'])
+    @adminPageHeader(['title' => 'Buttons', 'item' => 'UI Elements',
+    'route' => route('admin.ui-features.buttons')])
     @endadminPageHeader
 
     <div class="row">

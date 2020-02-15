@@ -7,7 +7,9 @@
 @endsection
 
 @section('content')
-    @adminPageHeader(['title' => 'Notifications', 'item' => 'UI Elements'])
+    @adminPageHeader(['title' => 'Notifications', 'item' => 'UI Elements',
+    'route' => route('admin.ui-features.notifications')
+    ])
     @endadminPageHeader
 
     <div class="row">

@@ -44,5 +44,7 @@ Route::namespace('Doctor')
             ->except('destroy');
         Route::name('admin')->resource('doctors.patients', 'DoctorPatientController')
             ->only('create');
+        Route::name('admin')->resource('doctors.appointments', 'DoctorAppointmentController')
+            ->only('create', 'store');
         Route::get('doctors/{doctor}/patients/list', 'DoctorPatientAjaxController@index');
     });

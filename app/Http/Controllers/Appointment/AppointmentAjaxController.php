@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Appointment;
 
 use App\Appointment;
-use App\Http\Resources\AppointmentResource;
 use App\Http\Controllers\Controller;
 
 class AppointmentAjaxController extends Controller
@@ -15,7 +14,6 @@ class AppointmentAjaxController extends Controller
      */
     public function index()
     {
-        // return AppointmentResource::collection(Appointment::all());
         return Appointment::with('doctor', 'patient')->get();
     }
 }

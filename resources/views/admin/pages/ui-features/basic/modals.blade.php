@@ -3,7 +3,8 @@
 @section('title', 'Modals')
 
 @section('content')
-    @adminPageHeader(['title' => 'Modals', 'item' => 'UI Elements'])
+    @adminPageHeader(['title' => 'Modals', 'item' => 'UI Elements',
+    'route' => route('admin.ui-features.modals')])
     @endadminPageHeader
 
     <div class="row">

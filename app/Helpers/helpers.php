@@ -35,3 +35,14 @@ function active($value_1, $value_2)
 {
     return $value_1 == $value_2 ? 'active' : '';
 }
+
+/**
+ * Get the first character in a string.
+ *
+ * @param  stirng $str
+ * @return string
+ */
+function first_char($str)
+{
+    return $str ? substr($str, 0, 1) : '';
+}

@@ -23,9 +23,9 @@ class CreatePatientsTable extends Migration
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->date('birthday');
-            $table->string('street_address', 199);
-            $table->string('city', 100);
-            $table->string('country')->default('RS');
+            $table->string('street_address', 199)->nullable();
+            $table->string('city', 100)->nullable();
+            $table->string('country')->nullable();
             $table->string('phone');
             $table->string('mrn')->unique();
             $table->timestamps();

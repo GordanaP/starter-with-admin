@@ -5,7 +5,7 @@
 /storage/*.key
 /vendor
 /vnotes
-resources/views//admin/test.blade.php
+resources/views/test.blade.php
 .env
 .env.backup
 .phpunit.result.cache

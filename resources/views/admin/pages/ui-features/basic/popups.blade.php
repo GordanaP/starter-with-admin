@@ -3,7 +3,8 @@
 @section('title', 'Popups')
 
 @section('content')
-    @adminPageHeader(['title' => 'Popups', 'item' => 'UI Elements'])
+    @adminPageHeader(['title' => 'Popups', 'item' => 'UI Elements',
+    'route' => route('admin.ui-features.popups')])
     @endadminPageHeader
 
     <div class="row">

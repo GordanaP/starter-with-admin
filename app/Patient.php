@@ -22,7 +22,7 @@ class Patient extends Model
      *
      * @var array
      */
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'short_name'];
 
     /**
      * The patient's full name.
@@ -32,6 +32,16 @@ class Patient extends Model
     public function getFullNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
+     * The patient's short name.
+     *
+     * @return string
+     */
+    public function getShortNameAttribute()
+    {
+        return first_char($this->first_name) . '. ' . $this->last_name;
     }
 
     /**

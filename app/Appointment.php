@@ -11,7 +11,7 @@ class Appointment extends Model
      *
      * @var array
      */
-    protected $fillable = [ 'start_at'];
+    protected $fillable = [ 'patient_id', 'start_at'];
 
     /**
      * The attributes that should be mutated to dates.
