@@ -23,6 +23,7 @@ class DoctorResource extends JsonResource
                 'show' => route('admin.doctors.show', $this),
                 'edit' => route('admin.doctors.edit', $this),
                 'show_patients' => route('admin.doctors.show', [$this] + ['patients' => 1]),
+                'show_schedule' => route('admin.doctors.show', [$this] + ['schedule' => 1]),
             ]
         ];
     }

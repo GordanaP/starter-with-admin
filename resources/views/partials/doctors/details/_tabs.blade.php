@@ -13,6 +13,10 @@
 
     @adminTabNav(['title' => 'patients', 'activePatients' => true]) Patients
     @endadminTabNav
+
+    @adminTabNav(['title' => 'schedule', 'activeSchedule' => true]) Schedule
+    @endadminTabNav
+
 </ul>
 
 <div class="tab-content">
@@ -41,5 +45,9 @@
             <th>MRN</th>
             <th>Doctor</th>
         @enddatatable
+    @endadminTabPane
+
+    @adminTabPane(['title'=>'schedule', 'activeSchedule' => true])
+        @include('partials.doctors.details._schedule')
     @endadminTabPane
 </div>

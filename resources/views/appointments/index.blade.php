@@ -25,20 +25,26 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Select a doctor</h5>
+                    <h5 class="modal-title">Select a patient</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <select class="form-control" id="selectDoctor">
-                        <option value="">Select a doctor</option>
-                        @foreach (\App\Doctor::all() as $doctor)
-                            <option value="{{ $doctor->id }}">
-                                {{ $doctor->full_name }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input"
+                            name="patient_type" id="oldPatient" value="old" checked>
+                            Old patient
+                        </label>
+                    </div>
+                    <div class="form-check">
+                      <label class="form-check-label">
+                            <input type="radio" class="form-check-input"
+                            name="patient_type" id="newPatient" value="new">
+                            New patient
+                        </label>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-success" id="newAppButton">Submit</button>
@@ -58,7 +64,6 @@
     <script src="{{ asset('vendor/fullcalendar-4.3.1/packages/list/main.js') }}"></script>
 
     <script>
-
 
         /**
          * Calendar
@@ -152,31 +157,19 @@
             calendar.render();
         });
 
-        $(document).on('change', '#selectDoctor', function(){
-            var selectedDoctor = getSelectedValue($(this));
-            assignValueToEl('#newAppButton', selectedDoctor);
+        $(document).on('click', "#newAppButton", function(){
+            var radioValue = $("input[name='patient_type']:checked").val();
+            if(radioValue == 'old'){
+                var url = "{{ route('admin.patients.index') }}";
+            } else if(radioValue == 'new') {
+                var url = "{{ route('admin.doctors.index') }}"
+            }
+            redirectTo(url);
         });
 
-        $(document).on('click', '#newAppButton', function(){
-            var selectedDoctor = $(this).val();
-            var createEventUrl = '/admin/doctors/' + selectedDoctor + '/appointments/create';
-
-            goTo(createEventUrl);
-        });
-
-        function goTo(url)
+        function redirectTo(url)
         {
             location.replace(url);
-        }
-
-        function getSelectedValue(selectbox)
-        {
-            return selectbox.children("option:selected").val();
-        }
-
-        function assignValueToEl(el, value)
-        {
-            $(el).val(value);
         }
 
     </script>

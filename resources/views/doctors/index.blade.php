@@ -18,6 +18,8 @@
         <th>Name</th>
         <th>Expertises</th>
         <th class="text-center">Patients</th>
+        <th class="text-center">Schedule</th>
+        <th class="text-center">Appointments</th>
     @enddatatable
 @endsection
 

@@ -18,16 +18,13 @@
                 <input type="hidden" name="patient" value="{{ request('patient') }}" />
 
                 <div class="form_group">
-                    @if (request('patient') == 'old')
+                    @if ($patient = \App\Patient::find(request('patient')))
                         <div class="form-group">
-                            <label for="doctorId">Select a patient: @asterisks @endasterisks</label>
-                            <select class="form-control" name="patient_id" id="patientId">
-                                <option value="">Select a patient</option>
-                                @foreach ($doctor->patients as $patient)
-                                    <option value="{{ $patient->id }}">
-                                        {{ $patient->full_name }} {{ $patient->mrn }}
-                                    </option>
-                                @endforeach
+                            <label for="patientId">The patient: @asterisks @endasterisks</label>
+                            <select class="form-control" name="patient_id" id="patientId" read-only>
+                                <option value="{{ $patient->id }}">
+                                    {{ $patient->full_name }} {{ $patient->mrn }}
+                                </option>
                             </select>
                         </div>
                     @else
@@ -63,13 +60,6 @@
                         </div>
 
                     @endif
-                </div>
-
-                <div class="form-group">
-                    <label for="doctorId">Select a doctor: @asterisks @endasterisks</label>
-                    <select class="form-control" name="doctor_id" id="doctorId">
-                        <option value="{{ $doctor->id }}">{{ $doctor->full_name }}</option>
-                    </select>
                 </div>
 
                 <div class="row">

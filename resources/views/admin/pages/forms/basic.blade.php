@@ -8,7 +8,9 @@
 @endsection
 
 @section('content')
-    @adminPageHeader(['title' => 'Form elements', 'item' => 'Forms'])
+    @adminPageHeader(['title' => 'Form elements', 'item' => 'Forms',
+    'route' => route('admin.forms.basic')
+    ])
     @endadminPageHeader
 
     <div class="row">

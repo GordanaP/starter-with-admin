@@ -1,10 +1,14 @@
 <li class="nav-item">
     <a class="nav-link
-        @if (isset($activeHome) == true && ! request('patients'))
+        @if (isset($activeHome) == true && ! request('patients') && ! request('schedule')))
             active
         @endif
 
         @if (isset($activePatients) == true && request('patients'))
+            active
+        @endif
+
+        @if (isset($activeSchedule) == true && request('schedule'))
             active
         @endif
     "

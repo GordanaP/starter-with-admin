@@ -3,12 +3,29 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Doctor;
-use App\Appointment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Repositories\AppointmentRepository;
 
 class DoctorAppointmentController extends Controller
 {
+    /**
+     * The appointments.
+     *
+     * @var \App\Repositories\AppointmentRepository
+     */
+    private $appointments;
+
+    /**
+     * Create a new class instance.
+     *
+     * @param \App\Repositories\AppointmentRepository $appointments
+     */
+    public function __construct(AppointmentRepository $appointments)
+    {
+        $this->appointments = $appointments;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -37,17 +54,7 @@ class DoctorAppointmentController extends Controller
      */
     public function store(Request $request, Doctor $doctor)
     {
-        if($request->patient == 'old')
-        {
-            $doctor->appointments()->create([
-                'patient_id' => $request->patient_id,
-            ]);
-        } else {
-            $patient = $doctor->patients()->create($request->all());
-            $doctor->appointments()->create([
-                'patient_id' => $patient->id,
-            ]);
-        }
+        $this->appointments->schedule($request->all());
 
         return back();
     }

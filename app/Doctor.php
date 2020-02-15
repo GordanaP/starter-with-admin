@@ -22,6 +22,13 @@ class Doctor extends Model
     ];
 
     /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = ['full_name'];
+
+    /**
      * The doctor's full name.
      *
      * @return string
@@ -100,5 +107,28 @@ class Doctor extends Model
     public function addExpertises($expertises)
     {
         $this->expertises()->sync($expertises);
+    }
+
+    /**
+     * Add a new patient.
+     *
+     * @param array $data
+     * @return \App\Patient
+     */
+    public function addPatient($data)
+    {
+        return $this->patients()->create($data);
+    }
+
+    /**
+     * Schedule an appointment for a specific patient.
+     *
+     * @param  \App\Patient $patient
+     */
+    public function scheduleAppointmentFor($patient)
+    {
+        $this->appointments()->create([
+            'patient_id' => $patient->id,
+        ]);
     }
 }
