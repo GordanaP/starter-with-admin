@@ -3,9 +3,10 @@
 namespace App\Rules;
 
 use App\Utilities\AppCarbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Contracts\Validation\Rule;
 
-class AgeLimit implements Rule
+class IsBusinessDay implements Rule
 {
     /**
      * Determine if the validation rule passes.
@@ -18,11 +19,9 @@ class AgeLimit implements Rule
     {
         $app_carbon = new AppCarbon;
 
-        if ($app_carbon->validate($value)) {
-
-            $age = $app_carbon->parse($value)->age;
-
-            return $age <= 110;
+        if($app_carbon->validate($value))
+        {
+            return App::make('business-day')->isOfficialWorkDay($value);
         }
     }
 
@@ -33,6 +32,6 @@ class AgeLimit implements Rule
      */
     public function message()
     {
-        return 'The age can be 110 years maximum';
+        return 'Business is closed on public holidays and Sundays.';
     }
 }

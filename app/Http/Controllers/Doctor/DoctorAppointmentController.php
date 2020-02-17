@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Doctor;
 
 use App\Doctor;
+use App\Patient;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AppointmentRequest;
 use App\Repositories\AppointmentRepository;
 
 class DoctorAppointmentController extends Controller
@@ -43,7 +45,10 @@ class DoctorAppointmentController extends Controller
      */
     public function create(Doctor $doctor)
     {
-        return view('appointments.create', compact('doctor'));
+        return view('appointments.create')->with([
+            'doctor' => $doctor,
+            'patient' => Patient::find(request('patient')) ?? '',
+        ]);
     }
 
     /**
@@ -52,8 +57,10 @@ class DoctorAppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Doctor $doctor)
+    public function store(AppointmentRequest $request, Doctor $doctor)
     {
+        // return $request->all();
+
         $this->appointments->schedule($request->all());
 
         return back();

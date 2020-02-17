@@ -10,7 +10,18 @@ use Illuminate\Support\Facades\Request;
 
 class AppointmentRepository extends AbstractDelete
 {
+    /**
+     * The doctor
+     *
+     * @var integer
+     */
     private $doctor;
+
+    /**
+     * The patient
+     *
+     * @var integer
+     */
     private $old_patient;
 
     /**

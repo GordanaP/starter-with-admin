@@ -5,8 +5,20 @@ namespace App\Rules;
 use App\Utilities\AppCarbon;
 use Illuminate\Contracts\Validation\Rule;
 
-class AgeLimit implements Rule
+class IsValidDate implements Rule
 {
+    public $app_date;
+
+    /**
+     * Create a new rule instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
     /**
      * Determine if the validation rule passes.
      *
@@ -18,12 +30,7 @@ class AgeLimit implements Rule
     {
         $app_carbon = new AppCarbon;
 
-        if ($app_carbon->validate($value)) {
-
-            $age = $app_carbon->parse($value)->age;
-
-            return $age <= 110;
-        }
+        return $app_carbon->validate($value);
     }
 
     /**
@@ -33,6 +40,6 @@ class AgeLimit implements Rule
      */
     public function message()
     {
-        return 'The age can be 110 years maximum';
+        return 'An invalid date.';
     }
 }
