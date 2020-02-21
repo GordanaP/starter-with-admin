@@ -5,7 +5,7 @@ namespace App\Utilities;
 use App\Utilities\AppCarbon;
 use Illuminate\Support\Facades\App;
 
-class BusinessDay extends AppCarbon
+class BusinessSchedule extends AppCarbon
 {
     /**
      * The application carbon extension.
@@ -29,7 +29,7 @@ class BusinessDay extends AppCarbon
      *
      * @param  string  $date
      */
-    public function isOfficialWorkDay($date) : bool
+    public function isBusinessDay($date) : bool
     {
        return $this->isNotPublicHoliday($date) && $this->isNotSunday($date);
     }

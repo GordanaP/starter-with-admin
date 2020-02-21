@@ -14,7 +14,7 @@ class Expertise extends Model
     protected $fillable = ['field'];
 
     /**
-     * The doctors that has the experises.
+     * The doctors that have the expertises.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */

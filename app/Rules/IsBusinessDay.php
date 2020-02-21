@@ -21,7 +21,7 @@ class IsBusinessDay implements Rule
 
         if($app_carbon->validate($value))
         {
-            return App::make('business-day')->isOfficialWorkDay($value);
+            return App::make('business-schedule')->isBusinessDay($value);
         }
     }
 

@@ -33,7 +33,7 @@ class DoctorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() : View
+    public function index(): View
     {
         return view('doctors.index');
     }
@@ -41,7 +41,7 @@ class DoctorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create() : View
+    public function create(): View
     {
         $expertises = Expertise::all();
 
@@ -53,7 +53,7 @@ class DoctorController extends Controller
      *
      * @param  \App\Http\Requests\DoctorRequest  $request
      */
-    public function store(DoctorRequest $request) : RedirectResponse
+    public function store(DoctorRequest $request): RedirectResponse
     {
         $this->doctors->create($request->all());
 
@@ -75,7 +75,7 @@ class DoctorController extends Controller
      *
      * @param  \App\Doctor  $doctor
      */
-    public function edit(Doctor $doctor) : View
+    public function edit(Doctor $doctor): View
     {
         $expertises = Expertise::all();
 
@@ -88,7 +88,7 @@ class DoctorController extends Controller
      * @param  \App\Http\Requests\DoctorRequest  $request
      * @param  \App\Doctor  $doctor
      */
-    public function update(DoctorRequest $request, Doctor $doctor) : RedirectResponse
+    public function update(DoctorRequest $request, Doctor $doctor): RedirectResponse
     {
         $this->doctors->update($request->all(), $doctor);
 
@@ -101,7 +101,7 @@ class DoctorController extends Controller
      * @param  \App\Doctor  $doctor
      * @param  \App\Http\Requests\  $request
      */
-    public function destroy(DoctorDeleteRequest $request, Doctor $doctor = null)  : RedirectResponse
+    public function destroy(DoctorDeleteRequest $request, Doctor $doctor = null): RedirectResponse
     {
         $this->doctors->delete($doctor ?? $request->ids);
 

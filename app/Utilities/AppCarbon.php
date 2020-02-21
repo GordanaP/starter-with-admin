@@ -2,11 +2,17 @@
 
 namespace App\Utilities;
 
+use Carbon\CarbonPeriod;
 use Illuminate\Support\Carbon;
 use App\Utilities\PublicHoliday;
 
 class AppCarbon
 {
+    public function minutesIntervals($start_at, $end_at, $minutes)
+    {
+        return CarbonPeriod::since($start_at)->minutes($minutes)->until($end_at);
+    }
+
     /**
      * The time is during business hours.
      *
@@ -17,6 +23,16 @@ class AppCarbon
     public function inTimeRange($time, $start, $end) : bool
     {
         return $this->parse($time)->between($this->parse($start), $this->parse($end));
+    }
+
+    /**
+     * The iso weekday for a given date.
+     *
+     * @param  string $date
+     */
+    public function isoWeekDay($date) : int
+    {
+        return $this->parse($date)->isoWeekday();
     }
 
     /**
@@ -57,7 +73,7 @@ class AppCarbon
      * @param  string $string
      * @param  string $format
      */
-    public function fromFormat($format, $string) : string
+    public function fromFormat($string, $format = 'Y-m-d H:i'): string
     {
         return Carbon::createFromFormat($format, $string)->toDateTimeString();
     }

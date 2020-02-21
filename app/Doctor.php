@@ -79,6 +79,18 @@ class Doctor extends Model
     }
 
     /**
+     * The business days that belong to the doctors.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function business_days()
+    {
+        return $this->belongsToMany(BusinessDay::class)
+            ->as('hour')
+            ->withPivot('start_at', 'end_at');
+    }
+
+    /**
      * Determine if the doctor has an image.
      *
      * @return boolean

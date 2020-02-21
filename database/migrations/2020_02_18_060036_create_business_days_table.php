@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBusinessHoursSchedulesTable extends Migration
+class CreateBusinessDaysTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateBusinessHoursSchedulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('business_hours_schedules', function (Blueprint $table) {
+        Schema::create('business_days', function (Blueprint $table) {
             $table->tinyIncrements('id');
             $table->string('day');
-            $table->unsignedTinyInteger('day_iso')->nullable();
+            $table->unsignedTinyInteger('iso');
             $table->time('open');
             $table->time('close');
             $table->timestamps();
@@ -30,6 +30,6 @@ class CreateBusinessHoursSchedulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('business_hours_schedules');
+        Schema::dropIfExists('business_days');
     }
 }

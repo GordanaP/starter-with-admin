@@ -47,7 +47,7 @@ class DoctorAppointmentController extends Controller
     {
         return view('appointments.create')->with([
             'doctor' => $doctor,
-            'patient' => Patient::find(request('patient')) ?? '',
+            'patient' => Patient::find(request('patient_id')) ?? '',
         ]);
     }
 
@@ -59,8 +59,6 @@ class DoctorAppointmentController extends Controller
      */
     public function store(AppointmentRequest $request, Doctor $doctor)
     {
-        // return $request->all();
-
         $this->appointments->schedule($request->all());
 
         return back();

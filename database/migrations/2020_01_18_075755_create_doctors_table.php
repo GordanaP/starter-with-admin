@@ -27,6 +27,7 @@ class CreateDoctorsTable extends Migration
             $table->text('administrative_position', 300)->nullable();
             $table->text('training', 1000)->nullable();
             $table->string('color', 7);
+            $table->unsignedTinyInteger('app_slot')->nullable()->default(15);
             $table->timestamps();
         });
     }
