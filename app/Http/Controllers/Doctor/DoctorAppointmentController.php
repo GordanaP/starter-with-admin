@@ -57,11 +57,14 @@ class DoctorAppointmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AppointmentRequest $request, Doctor $doctor)
+    public function store(Request $request, Doctor $doctor)
     {
-        $this->appointments->schedule($request->all());
+        $appointment = $this->appointments->schedule($request->all());
 
-        return back();
+        return response([
+            'message' => 'success',
+            'appointment' => $appointment->load('doctor', 'patient')
+        ]);
     }
 
     /**

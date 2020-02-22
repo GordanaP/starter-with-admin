@@ -31,7 +31,7 @@ class AppointmentRepository extends AbstractDelete
     {
         $this->model = Appointment::class;
         $this->doctor = Doctor::find(Request::route('doctor'));
-        $this->old_patient = Patient::find(request('patient'));
+        $this->old_patient = Patient::find(request('patient_id'));
     }
 
     /**
@@ -41,7 +41,7 @@ class AppointmentRepository extends AbstractDelete
      */
     public function schedule($data)
     {
-        $this->doctor->scheduleAppointmentFor($this->patient($data));
+        return $this->doctor->scheduleAppointmentFor($this->patient($data));
     }
 
     /**

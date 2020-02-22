@@ -139,7 +139,7 @@ class Doctor extends Model
      */
     public function scheduleAppointmentFor($patient)
     {
-        $this->appointments()->create([
+        return $this->appointments()->create([
             'patient_id' => $patient->id,
         ]);
     }

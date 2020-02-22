@@ -5,55 +5,111 @@
         <div class="card-body">
             <h4 class="card-title">Home page</h4>
         </div>
-
-        @php
-            $carbon = new App\Utilities\AppCarbon;
-            $date = "2020-02-19";
-            $office_day = App::make('doctor-schedule')->setDoctor($doctor)->findOfficeDay($date);
-            $s = $office_day->hour->start_at;
-            $start_date = $carbon->parse('2020-02-19 11:00:00');
-            $start_at = '11:00';
-            $end_at = '16:00';
-            $slot_duration = 15;
-            $period = Carbon\CarbonPeriod::create('2020-04-21', '3 days', '2020-04-28');
-
-            $int = Carbon\CarbonInterval::minutes(15);
-            Carbon\Carbon::create($date)->addMinutes($int);
-
-            $period = $carbon->parse($start_at)->diffInMinutes($carbon->parse($end_at));
-            $slots = $carbon->parse($start_at)->diffInMinutes($carbon->parse($end_at))/$slot_duration;
-            Carbon\CarbonInterval::make($slot_duration);
-            $allTimes = [];
-            array_push($allTimes, $start_date->toTimeString());
-            for ($i = 0; $i < $slots-1; $i ++){
-                $start_date->addMinutes($slot_duration);
-                array_push($allTimes, $start_date->toTimeString());
-            }
-            // print_r($allTimes);
-            in_array($start_at, $allTimes);
-
-            $period =\Carbon\CarbonPeriod::create('11:00:00', '20 minutes', '16:00:00');
-            foreach ($period as $key => $date) {
-                $coll = collect($date->format('H:i'));
-                echo $coll->contains($start_at);
-                // if ($key) {
-                //     echo ', ';
-                // }
-                // echo $date->format('H:i');
-            }
-            // 04-21, 04-24, 04-27
-
-            // Here is what happens under the hood:
-            // $period->rewind(); // restart the iteration
-            // while ($period->valid()) { // check if current item is valid
-            //     if ($period->key()) { // echo comma if current key is greater than 0
-            //         echo ', ';
-            //     }
-            //     echo $period->current()->format('m-d'); // echo current date
-            //     $period->next(); // move to the next item
-            // }
-            // 04-21, 04-24, 04-27
-        @endphp
     </div>
+
+    <form action="{{ route('admin.doctors.appointments.store', $doctor) }}"
+            method="POST">
+
+                @csrf
+
+                <!-- The patient -->
+                <div class="form_group">
+                    @if ($patient)
+                        <div class="form-group">
+                            <label for="patientId">The patient: @asterisks @endasterisks</label>
+                            <select class="form-control" name="patient" id="patientId" read-only>
+                                <option value="{{ $patient->id }}">
+                                    {{ $patient->full_name }} {{ $patient->mrn }}
+                                </option>
+                            </select>
+
+                            @invalid(['field' => 'patient']) @endinvalid
+                        </div>
+                    @else
+                        <!-- First Name -->
+                        <div class="form-group">
+                            <label for="first_name">First name: @asterisks @endasterisks</label>
+                            <input type="text" name="first_name" id="first_name"
+                            class="form-control form-control-sm"
+                            placeholder="First name"
+                            value="{{ old('first_name') }}" />
+
+                            @invalid(['field' => 'first_name']) @endinvalid
+                        </div>
+
+                        <!-- last Name -->
+                        <div class="form-group">
+                            <label for="last_name">Last name: @asterisks @endasterisks</label>
+                            <input type="text" name="last_name" id="last_name"
+                            class="form-control form-control-sm"
+                            placeholder="Last name"
+                            value="{{ old('last_name') }}" />
+
+                            @invalid(['field' => 'last_name']) @endinvalid
+                        </div>
+
+                        <!-- Birthday  -->
+                        <div class="form-group">
+                            <label for="birthday">Date of birth: @asterisks @endasterisks</label>
+                            <input type="text" name="birthday" id="birthday"
+                            class="form-control form-control-sm"
+                            placeholder="Date of birth"
+                            value="{{ old('birthday') }}"/>
+
+                            @invalid(['field' => 'birthday']) @endinvalid
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone:</label>
+                            <input type="text" name="phone" id="phone"
+                            class="form-control form-control-sm"
+                            placeholder="Phone number"
+                            value="{{ old('phone') }}"/>
+
+                            @invalid(['field' => 'phone']) @endinvalid
+                        </div>
+
+                    @endif
+                </div>
+
+                <!-- The doctor -->
+                <div class="form-group">
+                    <label for="doctorId">The doctor: @asterisks @endasterisks</label>
+                    <select class="form-control" id="doctorIdId" read-only>
+                        <option>
+                            {{ Request::route('doctor')->full_name }}
+                        </option>
+                    </select>
+                </div>
+
+                <!-- The appointment -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="appDate">Appointment date: @asterisks @endasterisks</label>
+                            <input type="text" name="app_date" name="appDate" class="form-control"
+                            placeholder="yyyy-mm-dd"
+                            value="{{ old('app_date') }}" />
+
+                            @invalid(['field' => 'app_date']) @endinvalid
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="appTime">Appointment time: @asterisks @endasterisks</label>
+                            <input type="text" name="app_time" name="appTime" class="form-control"
+                            placeholder="hh:mm"
+                            value="{{ old('app_time') }}" />
+
+                            @invalid(['field' => 'app_time']) @endinvalid
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn btn-gradient-primary mr-2 mt-2">
+                    Submit
+                </button>
+            </form>
 @endsection
 

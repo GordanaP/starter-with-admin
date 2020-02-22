@@ -46,5 +46,7 @@ Route::namespace('Doctor')
             ->only('create');
         Route::name('admin')->resource('doctors.appointments', 'DoctorAppointmentController')
             ->only('create', 'store');
+        Route::get('doctors/{doctor}/appointments/list', 'DoctorAppointmentAjaxController@index')
+            ->name('admin.doctors.appointments.list');
         Route::get('doctors/{doctor}/patients/list', 'DoctorPatientAjaxController@index');
     });

@@ -79,7 +79,7 @@
             var saturday = [6];
             var saturdayOpen = '10:00';
             var saturdayClose = '15:00';
-            var eventsListUrl = "{{ route('admin.appointments.list') }}";
+            var eventsListUrl = "{{ Request::route('doctor') ? route('admin.doctors.appointments.list', $doctor) : route('admin.appointments.list') }}";;
             var eventLimit = 6;
             var newEventModal = $('#newEventModal');
 
