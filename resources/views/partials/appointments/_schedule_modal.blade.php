@@ -32,7 +32,8 @@ aria-labelledby="scheduleAppModal" aria-hidden="true">
                 @endif
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" id="scheduleAppButton">Submit</button>
+                <button type="button" class="btn btn-danger" id="deleteAppButton" value="">Delete</button>
+                <button type="button" class="btn btn-success" id="scheduleAppButton" value="">Submit</button>
                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
             </div>
         </div>

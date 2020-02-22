@@ -16,7 +16,7 @@ function formatDate(date, format)
  * @param FullCalendar calendar
  * @param App\Appointment appointment
  */
-function addAppointmenttoCalendar(calendar, appointment)
+function addAppointmentToCalendar(calendar, appointment)
 {
     var event = eventObjectFrom(appointment);
 

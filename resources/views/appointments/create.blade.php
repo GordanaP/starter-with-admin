@@ -67,6 +67,11 @@
         var scheduleAppUrl = "{{ route('admin.doctors.appointments.store', $doctor) }}";
 
         /**
+         * Delete app
+         */
+        var deleteAppButton = $('#deleteAppButton').hide();
+
+        /**
          * Calendar
          */
         document.addEventListener('DOMContentLoaded', function() {
@@ -156,11 +161,23 @@
                 @if (Request::route('doctor'))
                     selectable: true,
                     select: function(info) {
+                        var dateObj = info.start;
+
                         scheduleAppModal.modal('show');
-                        appDate.val(formatDate(info.start, 'YYYY-MM-DD'));
-                        appTime.val(formatDate(info.start, 'HH:mm'));
+
+                        appDate.val(formatDate(dateObj, 'YYYY-MM-DD'));
+                        appTime.val(formatDate(dateObj, 'HH:mm'));
                     },
                 @endif
+                eventClick: function(info) {
+                    var eventObj = info.event;
+
+                    scheduleAppModal.modal('show');
+
+                    appDate.val(formatDate(eventObj.start, 'YYYY-MM-DD'));
+                    appTime.val(formatDate(eventObj.start, 'HH:mm'));
+                    deleteAppButton.show().val(eventObj.id);
+                }
             });
 
             calendar.render();
@@ -178,11 +195,29 @@
                     data: data,
                 })
                 .done(function(response) {
-                    addAppointmenttoCalendar(calendar, response.appointment);
+                    addAppointmentToCalendar(calendar, response.appointment);
                     scheduleAppModal.modal('hide');
                 })
                 .fail(function() {
                     console.log("error");
+                });
+            });
+
+            $(document).on('click', '#deleteAppButton', function() {
+
+                var appId = $(this).val();
+                var deleteAppUrl = '/admin/appointments/' + appId
+
+                $.ajax({
+                    url: deleteAppUrl,
+                    type: 'DELETE',
+                    success : function(response)
+                    {
+                        var event = calendar.getEventById(appId);
+
+                        event.remove();
+                        scheduleAppModal.modal('hide');
+                    }
                 });
             });
         });
