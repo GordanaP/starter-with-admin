@@ -137,10 +137,18 @@ class Doctor extends Model
      *
      * @param  \App\Patient $patient
      */
-    public function scheduleAppointmentFor($patient)
+    // public function scheduleAppointmentFor($patient)
+    // {
+    //     return $this->appointments()->create([
+    //         'patient_id' => $patient->id,
+    //     ]);
+    // }
+
+    public function scheduleAppointment($patient, $date)
     {
         return $this->appointments()->create([
             'patient_id' => $patient->id,
+            'start_at' => $date,
         ]);
     }
 }

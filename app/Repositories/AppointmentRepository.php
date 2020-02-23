@@ -31,17 +31,35 @@ class AppointmentRepository extends AbstractDelete
     {
         $this->model = Appointment::class;
         $this->doctor = Doctor::find(Request::route('doctor'));
-        $this->old_patient = Patient::find(request('patient_id'));
+        $this->old_patient = Patient::find(request('patient'));
     }
 
     /**
      * Schedule an appointment.
      *
      * @param  array $data
+     * @return \App\Appointment
      */
     public function schedule($data)
     {
-        return $this->doctor->scheduleAppointmentFor($this->patient($data));
+        $date = Request::appDate($data);
+        $patient = $this->patient($data);
+
+        return $this->doctor->scheduleAppointment($patient, $date);
+    }
+
+    /**
+     * Reschedule the appointment.
+     *
+     * @param  array $data
+     * @return \App\Appointment
+     */
+    public function reschedule($appointment, $data)
+    {
+        $appointment->start_at = Request::appDate($data);;
+        $appointment->save();
+
+        return $appointment;
     }
 
     /**

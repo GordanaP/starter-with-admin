@@ -14,10 +14,7 @@ Route::namespace('Appointment')
     ->group(function(){
         Route::get('appointments/list', 'AppointmentAjaxController@index')
             ->name('admin.appointments.list');
-        Route::delete('appointments/{appointment?}', 'AppointmentController@destroy')
-            ->name('admin.appointments.destroy');
-        Route::name('admin')->resource('appointments', 'AppointmentController')
-            ->except('destroy');
+        Route::name('admin')->resource('appointments', 'AppointmentController');
     });
 
 /**

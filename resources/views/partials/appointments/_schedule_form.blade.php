@@ -9,7 +9,7 @@
                 </option>
             </select>
 
-            @invalid(['field' => 'patient']) @endinvalid
+            @invalid(['field' => 'patient_id']) @endinvalid
         </div>
     @else
         <!-- First Name -->

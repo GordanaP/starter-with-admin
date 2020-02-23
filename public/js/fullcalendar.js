@@ -11,16 +11,44 @@ function formatDate(date, format)
 }
 
 /**
+ * Remove the event from the calendar.
+ *
+ * @param  FullCalendar calendar
+ * @param  integer eventId
+ */
+function removeEvent(calendar, eventId)
+{
+    var eventObj = calendar.getEventById(eventId);
+
+    eventObj.remove();
+}
+
+/**
+ * Update the appointment in the calendar.
+ *
+ * @param  Fullcalendar calendar
+ * @param  \App\Model event
+ */
+function updateEvent(calendar, event)
+{
+    var eventObj = calendar.getEventById(event.id);
+    var newStart = new Date(event.start_at);
+    var newEnd = new Date(event.end_at);
+
+    eventObj.setDates(newStart, newEnd);
+}
+
+/**
  * Add the appointment to the calendar.
  *
  * @param FullCalendar calendar
- * @param App\Appointment appointment
+ * @param App\Model event
  */
-function addAppointmentToCalendar(calendar, appointment)
+function addEvent(calendar, event)
 {
-    var event = eventObjectFrom(appointment);
+    var eventObj = getEventObjFor(event);
 
-    calendar.addEvent(event);
+    calendar.addEvent(eventObj);
 }
 
 /**
@@ -29,15 +57,33 @@ function addAppointmentToCalendar(calendar, appointment)
  * @param  \App\Appointment appointment
  * @return Fullcalendar\Event Object
  */
-function eventObjectFrom(appointment)
+function getEventObjFor(appointment)
 {
     return {
+        id: appointment.id,
         title: appointment.patient.short_name + ' - ' + appointment.doctor.last_name,
         description: appointment.doctor.last_name,
         start: appointment.start_at,
         end: appointment.end_at,
         backgroundColor: appointment.doctor.color,
         borderColor: appointment.doctor.color,
-        groupId: appointment.doctor.id,
     }
+}
+
+/**
+ * Transform custom data into a standard Event Object.
+ *
+ * @param  \App\Appointment eventData
+ * @return Fullcalendar\Event Object
+ */
+function transformToEventObj(appointment)
+{
+    appointment.title = appointment.patient.short_name + ' - ' + appointment.doctor.last_name;
+    appointment.description = appointment.doctor.last_name;
+    appointment.start = appointment.start_at;
+    appointment.end = appointment.end_at;
+    appointment.backgroundColor = appointment.doctor.color;
+    appointment.borderColor = appointment.doctor.color;
+
+    return appointment;
 }

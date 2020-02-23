@@ -46,7 +46,6 @@
     <script src="{{ asset('js/fullcalendar.js') }}"></script>
 
     <script>
-
         /**
          * Shedule App Form
          */
@@ -58,6 +57,7 @@
         var patientLastName = $('#lastName');
         var patientBirthday = $('#birthday');
         var patientPhone = $('#phone');
+        var appButton = $(".app-button");
 
         /**
          * Schedule app
@@ -65,17 +65,14 @@
         var scheduleAppModal = $('#scheduleAppModal');
         var scheduleAppButton = $("#scheduleAppButton");
         var scheduleAppUrl = "{{ route('admin.doctors.appointments.store', $doctor) }}";
-
         /**
          * Delete app
          */
         var deleteAppButton = $('#deleteAppButton').hide();
-
         /**
          * Calendar
          */
         document.addEventListener('DOMContentLoaded', function() {
-
             var calendarEl = document.getElementById('calendar');
             var firstDay = 1;
             var defaultView = 'dayGridMonth';
@@ -128,20 +125,11 @@
                         hour12: false
                     }
                 ],
-                editable: true,
                 events:  {
                     url: eventsListUrl,
                 },
-                eventDataTransform: function(event) {
-                    event.title = event.patient.short_name + ' - ' + event.doctor.last_name;
-                    event.description = event.doctor.last_name;
-                    event.start = event.start_at;
-                    event.end = event.end_at;
-                    event.backgroundColor = event.doctor.color;
-                    event.borderColor = event.doctor.color;
-                    event.groupId = event.doctor.id;
-
-                    return event;
+                eventDataTransform: function(eventData) {
+                    transformToEventObj(eventData);
                 },
                 eventRender: function(info) {
                   $(info.el).tooltip({
@@ -164,27 +152,31 @@
                         var dateObj = info.start;
 
                         scheduleAppModal.modal('show');
-
                         appDate.val(formatDate(dateObj, 'YYYY-MM-DD'));
                         appTime.val(formatDate(dateObj, 'HH:mm'));
+                        appButton.text('Schedule')
+                            .attr('id', 'scheduleAppButton');
                     },
                 @endif
                 eventClick: function(info) {
                     var eventObj = info.event;
 
                     scheduleAppModal.modal('show');
-
                     appDate.val(formatDate(eventObj.start, 'YYYY-MM-DD'));
                     appTime.val(formatDate(eventObj.start, 'HH:mm'));
+                    appButton.text('Reschedule')
+                        .attr('id', 'rescheduleAppButton').val(eventObj.id);
                     deleteAppButton.show().val(eventObj.id);
                 }
             });
 
             calendar.render();
 
+            // Add appointment
             $(document).on('click', '#scheduleAppButton', function() {
+
                 var data = {
-                    patient_id: patientId.val(),
+                    patient: patientId.val(),
                     app_date: appDate.val(),
                     app_time: appTime.val(),
                 }
@@ -195,7 +187,7 @@
                     data: data,
                 })
                 .done(function(response) {
-                    addAppointmentToCalendar(calendar, response.appointment);
+                    addEvent(calendar, response.appointment);
                     scheduleAppModal.modal('hide');
                 })
                 .fail(function() {
@@ -203,24 +195,48 @@
                 });
             });
 
-            $(document).on('click', '#deleteAppButton', function() {
-
+            // Update appointment
+            $(document).on('click',  '#rescheduleAppButton', function(){
                 var appId = $(this).val();
-                var deleteAppUrl = '/admin/appointments/' + appId
+                var rescheduleAppUrl = '/admin/appointments/' + appId;
+
+                var data = {
+                    patient: patientId.val(),
+                    app_date: appDate.val(),
+                    app_time: appTime.val(),
+                }
+
+                $.ajax({
+                    url: rescheduleAppUrl,
+                    type: 'PUT',
+                    data: data,
+                })
+                .done(function(response) {
+                    updateEvent(calendar, response.appointment);
+                    scheduleAppModal.modal('hide');
+                })
+                .fail(function() {
+                    console.log("error");
+                });
+            });
+
+            // Remove appointment
+            $(document).on('click', '#deleteAppButton', function() {
+                var appId = $(this).val();
+                var deleteAppUrl = '/admin/appointments/' + appId;
 
                 $.ajax({
                     url: deleteAppUrl,
                     type: 'DELETE',
-                    success : function(response)
-                    {
-                        var event = calendar.getEventById(appId);
-
-                        event.remove();
-                        scheduleAppModal.modal('hide');
-                    }
+                })
+                .done(function(response) {
+                    removeEvent(calendar, appId);
+                    scheduleAppModal.modal('hide');
+                })
+                .fail(function() {
+                    console.log("error");
                 });
             });
         });
-
     </script>
 @endsection

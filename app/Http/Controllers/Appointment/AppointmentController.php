@@ -3,11 +3,30 @@
 namespace App\Http\Controllers\Appointment;
 
 use App\Appointment;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Http\Controllers\Controller;
+use App\Repositories\AppointmentRepository;
 
 class AppointmentController extends Controller
 {
+    /**
+     * The appointments.
+     *
+     * @var \App\Repositories\AppointmentRepository
+     */
+    private $appointments;
+
+    /**
+     * Create a new class instance.
+     *
+     * @param \App\Repositories\AppointmentRepository $appointments
+     */
+    public function __construct(AppointmentRepository $appointments)
+    {
+        $this->appointments = $appointments;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -58,7 +77,7 @@ class AppointmentController extends Controller
      */
     public function edit(Appointment $appointment)
     {
-        //
+        return view('appointments.edit', compact('appointment'));
     }
 
     /**
@@ -70,7 +89,12 @@ class AppointmentController extends Controller
      */
     public function update(Request $request, Appointment $appointment)
     {
-        //
+        $this->appointments->reschedule($appointment, $request->all());
+
+        return response([
+            'message' => 'Updated!',
+            'appointment' => $appointment->load('doctor', 'patient')
+        ]);
     }
 
     /**

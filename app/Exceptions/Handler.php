@@ -49,15 +49,15 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if($exception instanceof MethodNotAllowedHttpException && $request->ajax()) {
-            return response()->json([
-                'errors' => [
-                    'ids' => [
-                        0 => 'You are not authorized to perform the action.'
-                    ],
-                ]
-            ], 405);
-        }
+        // if($exception instanceof MethodNotAllowedHttpException && $request->ajax()) {
+        //     return response()->json([
+        //         'errors' => [
+        //             'ids' => [
+        //                 0 => 'You are not authorized to perform the action.'
+        //             ],
+        //         ]
+        //     ], 405);
+        // }
 
         if ($exception instanceof ModelNotFoundException && $request->ajax()) {
             return response()->json([

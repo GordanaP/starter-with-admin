@@ -34,6 +34,6 @@ class ObserverServiceProvider extends ServiceProvider
         Expertise::observe(ExpertiseObserver::class);
         Patient::observe(PatientObserver::class);
         Doctor::observe(DoctorObserver::class);
-        Appointment::observe(AppointmentObserver::class);
+        // Appointment::observe(AppointmentObserver::class);
     }
 }
