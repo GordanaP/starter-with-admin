@@ -46,44 +46,25 @@ function updateEvent(calendar, event)
  */
 function addEvent(calendar, event)
 {
-    var eventObj = getEventObjFor(event);
+    var eventObj = transformToEventObj(event);
 
     calendar.addEvent(eventObj);
 }
 
 /**
- * Create the event object.
- *
- * @param  \App\Appointment appointment
- * @return Fullcalendar\Event Object
- */
-function getEventObjFor(appointment)
-{
-    return {
-        id: appointment.id,
-        title: appointment.patient.short_name + ' - ' + appointment.doctor.last_name,
-        description: appointment.doctor.last_name,
-        start: appointment.start_at,
-        end: appointment.end_at,
-        backgroundColor: appointment.doctor.color,
-        borderColor: appointment.doctor.color,
-    }
-}
-
-/**
  * Transform custom data into a standard Event Object.
  *
- * @param  \App\Appointment eventData
+ * @param  \App\Model event
  * @return Fullcalendar\Event Object
  */
-function transformToEventObj(appointment)
+function transformToEventObj(event)
 {
-    appointment.title = appointment.patient.short_name + ' - ' + appointment.doctor.last_name;
-    appointment.description = appointment.doctor.last_name;
-    appointment.start = appointment.start_at;
-    appointment.end = appointment.end_at;
-    appointment.backgroundColor = appointment.doctor.color;
-    appointment.borderColor = appointment.doctor.color;
+    event.title = event.patient.short_name + ' - ' + event.doctor.last_name;
+    event.description = event.doctor.last_name;
+    event.start = event.start_at;
+    event.end = event.end_at;
+    event.backgroundColor = event.doctor.color;
+    event.borderColor = event.doctor.color;
 
-    return appointment;
+    return event;
 }
