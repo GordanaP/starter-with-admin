@@ -38,9 +38,8 @@ class AppointmentRepository extends AbstractDelete
      * Schedule an appointment.
      *
      * @param  array $data
-     * @return \App\Appointment
      */
-    public function schedule($data)
+    public function schedule($data): Appointment
     {
         $date = Request::appDate($data);
         $patient = $this->patient($data);
@@ -52,9 +51,8 @@ class AppointmentRepository extends AbstractDelete
      * Reschedule the appointment.
      *
      * @param  array $data
-     * @return \App\Appointment
      */
-    public function reschedule($appointment, $data)
+    public function reschedule($appointment, $data): Appointment
     {
         $appointment->start_at = Request::appDate($data);;
         $appointment->save();
@@ -66,9 +64,8 @@ class AppointmentRepository extends AbstractDelete
      * The patient scheduling an appointment.
      *
      * @param  array $data
-     * @return \App\Patient
      */
-    private function patient($data)
+    private function patient($data): Patient
     {
         return $this->old_patient ?? $this->doctor->addPatient($data);
     }

@@ -25,6 +25,22 @@ class BusinessHour extends AppCarbon
     }
 
     /**
+     * The extreme business hours range.
+     *
+     * @param  string $format
+     */
+    public function rangeExtremes($format = 'H:i'): array
+    {
+        $earliestOpening = BusinessDay::min('open');
+        $latestClosing = BusinessDay::max('close');
+
+        $timeSpan['open'] = $this->app_carbon::parseAndFormat($earliestOpening, $format);
+        $timeSpan['close'] = $this->app_carbon::parseAndFormat($latestClosing, $format);
+
+        return $timeSpan;
+    }
+
+    /**
      * The business opening time on a given date.
      *
      * @param  string $date

@@ -173,4 +173,14 @@ class DoctorSchedule extends AppCarbon
 
         return $this->doctor->business_days->where('id', $date_iso)->first();
     }
+
+    /**
+     * The doctor's office days.
+     */
+    public function officeDays(): Collection
+    {
+        return $this->doctor->business_days->map(function($day){
+            return $day->iso;
+        });
+    }
 }

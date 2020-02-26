@@ -7,6 +7,10 @@
     <link href="{{ asset('vendor/fullcalendar-4.3.1/packages/daygrid/main.css') }}" rel='stylesheet' />
     <link href="{{ asset('vendor/fullcalendar-4.3.1/packages/timegrid/main.css') }}" rel='stylesheet' />
     <link href="{{ asset('vendor/fullcalendar-4.3.1/packages/list/main.css') }}" rel='stylesheet' />
+
+    <style type="text/css">
+        .holiday { background-color: coral; }
+    </style>
 @endsection
 
 @section('content')
@@ -34,6 +38,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.28/moment-timezone.min.js"></script>
     <!-- Moment plugin to calculate dates for weekdays -->
     <script src="https://cdn.jsdelivr.net/npm/moment-weekdaysin@1.0.1/moment-weekdaysin.min.js"></script>
+    <!-- Moment plugin to make date range -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-range/4.0.2/moment-range.js" integrity="sha256-bB6c2ZfNzG6Tv8MSu/pqUl0y91h86M/T+1w0WrCZhGw=" crossorigin="anonymous"></script>
 
     <!-- FullCalendar -->
     <script src="{{ asset('vendor/fullcalendar-4.3.1/packages/core/main.js') }}"></script>
@@ -69,55 +75,46 @@
          * Delete app
          */
         var deleteAppButton = $('#deleteAppButton').hide();
+
         /**
          * Calendar
          */
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
-            var firstDay = 1;
-            var defaultView = 'dayGridMonth';
-            var standardDays = [1,2,3,4,5];
-            var standardOpen = '09:00';
-            var standardClose = '20:00';
-            var saturday = [6];
-            var saturdayOpen = '10:00';
-            var saturdayClose = '15:00';
-            var eventsListUrl = "{{ Request::route('doctor') ? route('admin.doctors.appointments.list', $doctor) : route('admin.appointments.list') }}";
+            var firstWeekDay = 1;
+            var defaultView = 'timeGridWeek';
+            var dateFormat = 'YYYY-MM-DD';
+            var timeFormat = 'HH:mm';
             var eventLimit = 6;
+            var doctorOfficeDays = @json($doctor->business_days);
+            var doctorAppSlotDuration = @json($doctor->app_slot);
+            var formattedDoctorAppSlotDuration = formatDateString(doctorAppSlotDuration, 'mm', 'HH:mm:ss');
+            var earliestBusinessOpen = @json(App::make('business-hour')->rangeExtremes()['open']);
+            var latestBusinessClose = @json(App::make('business-hour')->rangeExtremes()['close']);
+            var eventsListUrl = @json(route('admin.doctors.appointments.list', $doctor));
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
                 header: {
                     left: 'prev,next today',
                     center: 'title',
-                    right: @if (! Request::route('doctor')) ' myCustomButton' @endif
-                    'dayGridMonth,timeGridWeek,timeGridDay,listDay'
+                    right: 'myCustomButton, dayGridMonth, timeGridWeek, timeGridDay, listDay'
                 },
                 navLinks: true,
                 customButtons: {
                     myCustomButton: {
-                        text: 'New appointment',
+                        text: 'Schedule an appointment',
                         click: function() {
                             scheduleAppModal.modal('show');
                         }
                     }
-                  },
+                },
                 defaultView: defaultView,
-                firstDay: firstDay,
-                minTime: standardOpen,
-                maxTime: standardClose,
-                businessHours: [ // specify an array instead
-                    {
-                        daysOfWeek: standardDays, // Monday, Tuesday, Wednesday
-                        startTime: standardOpen, // 8am
-                        endTime: standardClose // 6pm
-                    },
-                    {
-                        daysOfWeek: saturday, // Thursday, Friday
-                        startTime: saturdayOpen, // 10am
-                        endTime: saturdayClose // 4pm
-                    }
-                ],
+                firstDay: firstWeekDay,
+                minTime: earliestBusinessOpen,
+                maxTime: latestBusinessClose,
+                slotDuration: formattedDoctorAppSlotDuration,
+                businessHours: doctorOfficeHours(doctorOfficeDays),
                 slotLabelFormat: [
                     {
                         hour: 'numeric',
@@ -125,6 +122,10 @@
                         hour12: false
                     }
                 ],
+                dayRender: function(info) {
+                    var year = info.date.getFullYear();
+                    highlightHolidays(year);
+                },
                 events:  {
                     url: eventsListUrl,
                 },
@@ -146,27 +147,67 @@
                     hour12: false
                 },
                 eventLimit: eventLimit,
-                @if (Request::route('doctor'))
-                    selectable: true,
-                    select: function(info) {
-                        var dateObj = info.start;
+                selectable: true,
+                select: function(info) {
+                    var dateObj = info.start;
+                    var viewObj = info.view.viewSpec.type;
+                    var year = dateObj.getFullYear();
+                    var formattedDate = formatDateObj(dateObj, dateFormat);
+                    var formattedTime = formatDateObj(dateObj, timeFormat);
 
-                        scheduleAppModal.modal('show');
-                        appDate.val(formatDate(dateObj, 'YYYY-MM-DD'));
-                        appTime.val(formatDate(dateObj, 'HH:mm'));
-                        appButton.text('Schedule')
-                            .attr('id', 'scheduleAppButton');
-                    },
-                @endif
+                    ( isNotHoliday(formattedDate, year) &&
+                      isDoctorOfficeDay(doctorOfficeDays, dateObj) &&
+                      isDoctorOfficeHour(doctorOfficeDays, dateObj) &&
+                      isNotPast( dateObj) )
+                    ? scheduleAppModal.modal('show') : '';
+
+                    appDate.val(formattedDate);
+                    appTime.val(viewObj == 'dayGridMonth' ? earliestBusinessOpen : formattedTime);
+                    appButton.text('Schedule').attr('id', 'scheduleAppButton');
+                    deleteAppButton.hide();
+
+                },
                 eventClick: function(info) {
                     var eventObj = info.event;
 
                     scheduleAppModal.modal('show');
-                    appDate.val(formatDate(eventObj.start, 'YYYY-MM-DD'));
-                    appTime.val(formatDate(eventObj.start, 'HH:mm'));
-                    appButton.text('Reschedule')
-                        .attr('id', 'rescheduleAppButton').val(eventObj.id);
+                    appDate.val(formatDateObj(eventObj.start, dateFormat));
+                    appTime.val(formatDateObj(eventObj.start, timeFormat));
+                    appButton.text('Reschedule').attr('id', 'rescheduleAppButton').val(eventObj.id);
                     deleteAppButton.show().val(eventObj.id);
+                },
+                eventDrop: function(info)
+                {
+                    var dropped = info.event;
+                    var patientId = dropped.extendedProps.patient.id;
+                    var droppedDate = formatDateObj(dropped.start, dateFormat);
+                    var droppedTime = formatDateObj(dropped.start, timeFormat);
+                    var appId = dropped.id;
+                    var rescheduleAppUrl = '/admin/appointments/' + appId;
+
+                    var data = {
+                        patient: patientId,
+                        app_date: droppedDate,
+                        app_time: droppedTime,
+                    }
+
+                    $.ajax({
+                        url: rescheduleAppUrl,
+                        type: 'PUT',
+                        data: data,
+                    })
+                    .done(function(response) {
+                        updateEvent(calendar, response.appointment);
+                        scheduleAppModal.modal('hide');
+                    })
+                    .fail(function() {
+                        console.log("error");
+                    });
+                },
+                views: {
+                    timeGrid: {
+                        editable: true,
+                    },
                 }
             });
 
