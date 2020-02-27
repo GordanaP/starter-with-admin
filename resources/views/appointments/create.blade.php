@@ -50,6 +50,7 @@
 
     <!-- Custom fullcalendar -->
     <script src="{{ asset('js/fullcalendar.js') }}"></script>
+    <script src="{{ asset('js/modal_helpers.js') }}"></script>
 
     <script>
         /**
@@ -71,6 +72,9 @@
         var scheduleAppModal = $('#scheduleAppModal');
         var scheduleAppButton = $("#scheduleAppButton");
         var scheduleAppUrl = "{{ route('admin.doctors.appointments.store', $doctor) }}";
+
+        scheduleAppModal.autofocus('#appDate');
+
         /**
          * Delete app
          */
@@ -105,7 +109,7 @@
                     myCustomButton: {
                         text: 'Schedule an appointment',
                         click: function() {
-                            scheduleAppModal.modal('show');
+                            scheduleAppModal.open();
                         }
                     }
                 },
@@ -122,9 +126,8 @@
                         hour12: false
                     }
                 ],
-                dayRender: function(info) {
-                    var year = info.date.getFullYear();
-                    highlightHolidays(year);
+                dayRender: function(rendered) {
+                    highlightHolidays(rendered, className="holiday")
                 },
                 events:  {
                     url: eventsListUrl,
@@ -132,9 +135,9 @@
                 eventDataTransform: function(eventData) {
                     transformToEventObj(eventData);
                 },
-                eventRender: function(info) {
-                  $(info.el).tooltip({
-                    title: info.event.extendedProps.description,
+                eventRender: function(rendered) {
+                  $(rendered.el).tooltip({
+                    title: rendered.event.extendedProps.description,
                     placement: "top",
                     trigger: "hover",
                     container: "body"
@@ -148,47 +151,45 @@
                 },
                 eventLimit: eventLimit,
                 selectable: true,
-                select: function(info) {
-                    var dateObj = info.start;
-                    var viewObj = info.view.viewSpec.type;
-                    var year = dateObj.getFullYear();
-                    var formattedDate = formatDateObj(dateObj, dateFormat);
-                    var formattedTime = formatDateObj(dateObj, timeFormat);
+                select: function(selected) {
+                    var date = selected.start;
+                    var eventDate = formatDateObj(date, dateFormat);
+                    var eventTime = formatDateObj(date, timeFormat);
+                    var viewType = selected.view.viewSpec.type;
 
-                    ( isNotHoliday(formattedDate, year) &&
-                      isDoctorOfficeDay(doctorOfficeDays, dateObj) &&
-                      isDoctorOfficeHour(doctorOfficeDays, dateObj) &&
-                      isNotPast( dateObj) )
-                    ? scheduleAppModal.modal('show') : '';
+                    areSelectableDayAndTime(date, doctorOfficeDays, viewType)
+                        ? scheduleAppModal.open() : '';
 
-                    appDate.val(formattedDate);
-                    appTime.val(viewObj == 'dayGridMonth' ? earliestBusinessOpen : formattedTime);
+                    appDate.val(eventDate);
+                    appTime.val(viewType == 'dayGridMonth' ? earliestBusinessOpen : eventTime);
                     appButton.text('Schedule').attr('id', 'scheduleAppButton');
                     deleteAppButton.hide();
-
                 },
-                eventClick: function(info) {
-                    var eventObj = info.event;
+                eventClick: function(clicked) {
+                    var event = clicked.event;
+                    eventId = event.id;
+                    eventDate = formatDateObj(event.start, dateFormat);
+                    eventTime = formatDateObj(event.start, timeFormat);
 
-                    scheduleAppModal.modal('show');
-                    appDate.val(formatDateObj(eventObj.start, dateFormat));
-                    appTime.val(formatDateObj(eventObj.start, timeFormat));
-                    appButton.text('Reschedule').attr('id', 'rescheduleAppButton').val(eventObj.id);
-                    deleteAppButton.show().val(eventObj.id);
+                    scheduleAppModal.open();
+
+                    appDate.val(eventDate);
+                    appTime.val(eventTime);
+                    appButton.text('Reschedule').attr('id', 'rescheduleAppButton').val(eventid);
+                    deleteAppButton.show().val(eventid);
                 },
-                eventDrop: function(info)
-                {
-                    var dropped = info.event;
-                    var patientId = dropped.extendedProps.patient.id;
-                    var droppedDate = formatDateObj(dropped.start, dateFormat);
-                    var droppedTime = formatDateObj(dropped.start, timeFormat);
-                    var appId = dropped.id;
-                    var rescheduleAppUrl = '/admin/appointments/' + appId;
+                eventDrop: function(dropped) {
+                    var event = dropped.event;
+                    var eventid = event.id;
+                    var eventDate = formatDateObj(event.start, dateFormat);
+                    var eventTime = formatDateObj(event.start, timeFormat);
+                    var patientId = event.extendedProps.patient.id;
+                    var rescheduleAppUrl = '/admin/appointments/' + eventid;
 
                     var data = {
                         patient: patientId,
-                        app_date: droppedDate,
-                        app_time: droppedTime,
+                        app_date: eventDate,
+                        app_time: eventTime,
                     }
 
                     $.ajax({
@@ -198,7 +199,7 @@
                     })
                     .done(function(response) {
                         updateEvent(calendar, response.appointment);
-                        scheduleAppModal.modal('hide');
+                        scheduleAppModal.close();
                     })
                     .fail(function() {
                         console.log("error");
@@ -229,7 +230,7 @@
                 })
                 .done(function(response) {
                     addEvent(calendar, response.appointment);
-                    scheduleAppModal.modal('hide');
+                    scheduleAppModal.close();
                 })
                 .fail(function() {
                     console.log("error");
@@ -254,7 +255,7 @@
                 })
                 .done(function(response) {
                     updateEvent(calendar, response.appointment);
-                    scheduleAppModal.modal('hide');
+                    scheduleAppModal.close();
                 })
                 .fail(function() {
                     console.log("error");
@@ -272,7 +273,7 @@
                 })
                 .done(function(response) {
                     removeEvent(calendar, appId);
-                    scheduleAppModal.modal('hide');
+                    scheduleAppModal.close();
                 })
                 .fail(function() {
                     console.log("error");

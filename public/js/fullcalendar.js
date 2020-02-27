@@ -12,7 +12,7 @@ function formatDateString(dateString, stringFormat, newFormat)
 }
 
 /**
- * Format the JS date object.
+ * Format the Javascript date object.
  *
  * @param  Javascript\Date dateObj
  * @param  string format
@@ -37,7 +37,7 @@ function removeEvent(calendar, eventId)
 }
 
 /**
- * Update the appointment in the calendar.
+ * Update the calendar event.
  *
  * @param  Fullcalendar calendar
  * @param  \App\Model event
@@ -52,7 +52,7 @@ function updateEvent(calendar, event)
 }
 
 /**
- * Add the appointment to the calendar.
+ * Add the event to the calendar.
  *
  * @param FullCalendar calendar
  * @param App\Model event
@@ -65,7 +65,7 @@ function addEvent(calendar, event)
 }
 
 /**
- * Transform custom data into a standard Event Object.
+ * Transform custom data into a standard Fullcalendar Event Object.
  *
  * @param  \App\Model event
  * @return Fullcalendar\Event Object
@@ -84,31 +84,61 @@ function transformToEventObj(event)
 }
 
 /**
- * Determine if the given date is the doctor's office day.
+ * Determine if the given date and time can be selected for an appointment scheduling.
  *
- * @param  \Illuminate\Support\Collection  doctorOfficeDays
  * @param  Javascript\Date  date
+ * @param  \Illuminate\Support\Collection  doctorOfficeDays
+ * @param  string  viewType
  * @return boolean
  */
-function isDoctorOfficeDay(doctorOfficeDays, date)
+function areSelectableDayAndTime(date, doctorOfficeDays, viewType)
 {
-    var officeDaysIso = doctorOfficeDays.map(function(day){
-        return day.iso;
-    });
+    if (viewType == 'dayGridMonth') {
+        return  isSelectableDay(date, doctorOfficeDays)
+    } else {
+        return  isSelectableDay(date, doctorOfficeDays) &&
+                isDoctorOfficeHour(date, doctorOfficeDays)
+    }
+}
 
+/**
+ * Determine if the given date can be selected for an appoinment scheduling.
+ *
+ * @param  Javascript\Date  date
+ * @param  \Illuminate\Support\Collection  doctorOfficeDays
+ * @return boolean
+ */
+function isSelectableDay(date, doctorOfficeDays)
+{
+    return  isNotPast(date) &&
+            isNotHoliday(date) &&
+            isDoctorOfficeDay(date, doctorOfficeDays)
+}
+
+/**
+ * Determine if the given date is the doctor's office day.
+ *
+ * @param  Javascript\Date  date
+ * @param  \Illuminate\Support\Collection  doctorOfficeDays
+ * @return boolean
+ */
+function isDoctorOfficeDay(date, doctorOfficeDays)
+{
     var dateIso = date.getDay();
 
-    return $.inArray(dateIso, officeDaysIso) !== -1;
+    return doctorOfficeDays.map(function(day) {
+        return day.iso;
+    }).includes(dateIso);
 }
 
 /**
  * Find the specific doctor's office day.
  *
- * @param  \Illuminate\Support\Collection doctorOfficeDays
  * @param  Javascript\Date
+ * @param  \Illuminate\Support\Collection doctorOfficeDays
  * @return \App\BusinessDay
  */
-function findDoctorOfficeDay(doctorOfficeDays, date)
+function findDoctorOfficeDay(date, doctorOfficeDays)
 {
     return doctorOfficeDays.find(x => x.iso === date.getDay());
 }
@@ -116,14 +146,14 @@ function findDoctorOfficeDay(doctorOfficeDays, date)
 /**
  * Determine if the given time is within the doctor's office hours.
  *
- * @param  \Illuminate\Support\Collection  doctorOfficeDays
  * @param  Javascript\Date
+ * @param  \Illuminate\Support\Collection  doctorOfficeDays
  * @param  string  format
  * @return boolean
  */
-function isDoctorOfficeHour(doctorOfficeDays, date, format="HH:mm:ss")
+function isDoctorOfficeHour(date, doctorOfficeDays, format="HH:mm:ss")
 {
-    officeDay = findDoctorOfficeDay(doctorOfficeDays, date);
+    var officeDay = findDoctorOfficeDay(date, doctorOfficeDays);
 
     var startTime = moment(officeDay.hour.start_at, format);
     var endTime = moment(officeDay.hour.end_at, format);
@@ -134,7 +164,7 @@ function isDoctorOfficeHour(doctorOfficeDays, date, format="HH:mm:ss")
 }
 
 /**
- * The doctor's business hours.
+ * The doctor's office hours.
  *
  * @param  Illuminate\Support\Collection doctorOfficeDays
  * @return array
@@ -155,26 +185,46 @@ function doctorOfficeHours(doctorOfficeDays)
 /**
  * Highlight holidays.
  *
- * @param  integer year
+ * @param  FullCalendar\Object fcDay
  * @param  string className
  */
-function highlightHolidays(year, className="holiday")
+function highlightHolidays(fcDay, className="holiday")
 {
-    holidays (year).map(function(holiday){
-        $('.fc-day[data-date="'+holiday+'"]').addClass(className);
+    var year = fcDay.date.getFullYear();
+    var fcDate = formatDateObj(fcDay.date, 'YYYY-MM-DD');
+    var calendarEl = fcDay.el;
+
+    holidays(year).map(function(holiday){
+        holiday.dates.map(function(date){
+            var holidayDate = formatDateObj(date, 'YYYY-MM-DD');
+
+            $('.fc-day[data-date="'+holidayDate+'"]').addClass('holiday');
+
+            if(fcDate == holidayDate) {
+                calendarEl.insertAdjacentHTML('beforeend', '<i class="fc-content" aria-hidden="true">'+ holiday.name +'</i>');
+            }
+        });
     });
 }
 
 /**
- * Determine if the given date is not holiday for the given year.
+ * Determine if the given date is not holiday.
  *
  * @param  Javascript\Date  date
- * @param  integer  year
  * @return boolean
  */
-function isNotHoliday(date, year)
+function isNotHoliday(date)
 {
-    return $.inArray(date, holidays(year)) == -1;
+    var year = date.getFullYear();
+    var formattedDate = formatDateObj(date, 'YYYY-MM-DD');
+
+    return ! holidays(year).map(function(holiday) {
+         return holiday.dates.filter(function(holiday){
+            return holiday != null;
+        }).map(function(day){
+            return formatDateObj(day, 'YYYY-MM-DD');
+        })
+    }).flat().includes(formattedDate);
 }
 
 /**
@@ -195,7 +245,7 @@ function holidays(year)
  * The public holidays.
  *
  * @param  integer year   [description]
- * @param  sring format [description]
+ * @param  string format [description]
  * @return array ['YYYY-YY-MM']
  */
 function publicHolidays(year, format = "YYYY-MM-DD")
@@ -212,14 +262,24 @@ function publicHolidays(year, format = "YYYY-MM-DD")
     var november11 = new Date(year, 10, 11);
     var november12 = isSunday(november11) ?  new Date(year, 10, 12) : null;
 
-    var publicHolidays = [ january1, january2, january3, february15, february16,
-    february17, may1, may2, may3, november11, november12 ];
-
-    return publicHolidays.filter(function(el) {
-        return el != null;
-    }).map(function(holiday){
-        return moment(holiday).format(format);
-    });
+    return [
+        {
+            dates: [ january1, january2, january3 ],
+            name: 'New Year'
+        },
+        {
+            dates: [ february15, february16, february17 ],
+            name: 'Sovereignity Day'
+        },
+        {
+            dates: [ may1, may2, may3 ],
+            name: 'Labor Day'
+        },
+        {
+            dates: [ november11, november12 ],
+            name: 'Armistice Day'
+        },
+    ]
 }
 
 /**
@@ -235,11 +295,24 @@ function religiousHolidays(year, format = "YYYY-MM-DD")
     var goodFriday = orthodoxEasterSunday(year).subtract(2, 'd');
     var easterMonday = orthodoxEasterSunday(year).add(1, 'd');
 
-    var religiousHolidays = [christmasDay, goodFriday, easterSunday, easterMonday];
-
-    return religiousHolidays.map(function(holiday){
-        return holiday.format(format);
-    });
+    return [
+        {
+            dates: [ christmasDay ],
+            name: 'Christmas Day'
+        },
+        {
+            dates: [ goodFriday ],
+            name: 'Good Friday'
+        },
+        {
+            dates: [ easterSunday ],
+            name: 'Easter Sunday'
+        },
+        {
+            dates: [ easterMonday ],
+            name: 'Easter Monday'
+        },
+    ]
 }
 
 /**
@@ -273,7 +346,6 @@ function isSunday(date)
 {
     return date.getDay() == 0;
 }
-
 
 /**
  * Determine if the given date is not in the past.
