@@ -54,23 +54,13 @@
 
     <script>
         /**
-         * Shedule App Form
+         * Shedule App
          */
-        var doctorId = $('#doctorId');
-        var patientId = $('#patientId');
         var appDate = $('#appDate');
         var appTime = $('#appTime');
-        var patientFirstName = $('#firstName');
-        var patientLastName = $('#lastName');
-        var patientBirthday = $('#birthday');
-        var patientPhone = $('#phone');
         var appButton = $(".app-button");
-
-        /**
-         * Schedule app
-         */
         var scheduleAppModal = $('#scheduleAppModal');
-        var scheduleAppButton = $("#scheduleAppButton");
+        var scheduleAppForm = $('#scheduleAppForm');
         var scheduleAppUrl = "{{ route('admin.doctors.appointments.store', $doctor) }}";
 
         scheduleAppModal.autofocus('#appDate');
@@ -127,7 +117,7 @@
                     }
                 ],
                 dayRender: function(rendered) {
-                    highlightHolidays(rendered, className="holiday")
+                    highlightHolidays(rendered)
                 },
                 events:  {
                     url: eventsListUrl,
@@ -167,24 +157,24 @@
                 },
                 eventClick: function(clicked) {
                     var event = clicked.event;
-                    eventId = event.id;
-                    eventDate = formatDateObj(event.start, dateFormat);
-                    eventTime = formatDateObj(event.start, timeFormat);
+                    var eventId = event.id;
+                    var eventDate = formatDateObj(event.start, dateFormat);
+                    var eventTime = formatDateObj(event.start, timeFormat);
 
                     scheduleAppModal.open();
 
                     appDate.val(eventDate);
                     appTime.val(eventTime);
-                    appButton.text('Reschedule').attr('id', 'rescheduleAppButton').val(eventid);
-                    deleteAppButton.show().val(eventid);
+                    appButton.text('Reschedule').attr('id', 'rescheduleAppButton').val(eventId);
+                    deleteAppButton.show().val(eventId);
                 },
                 eventDrop: function(dropped) {
                     var event = dropped.event;
-                    var eventid = event.id;
+                    var eventId = event.id;
                     var eventDate = formatDateObj(event.start, dateFormat);
                     var eventTime = formatDateObj(event.start, timeFormat);
                     var patientId = event.extendedProps.patient.id;
-                    var rescheduleAppUrl = '/admin/appointments/' + eventid;
+                    var rescheduleAppUrl = '/admin/appointments/' + eventId;
 
                     var data = {
                         patient: patientId,
@@ -216,12 +206,7 @@
 
             // Add appointment
             $(document).on('click', '#scheduleAppButton', function() {
-
-                var data = {
-                    patient: patientId.val(),
-                    app_date: appDate.val(),
-                    app_time: appTime.val(),
-                }
+                var data = scheduleAppForm.serializeArray();
 
                 $.ajax({
                     url: scheduleAppUrl,
@@ -240,13 +225,8 @@
             // Update appointment
             $(document).on('click',  '#rescheduleAppButton', function(){
                 var appId = $(this).val();
+                var data = scheduleAppForm.serializeArray();
                 var rescheduleAppUrl = '/admin/appointments/' + appId;
-
-                var data = {
-                    patient: patientId.val(),
-                    app_date: appDate.val(),
-                    app_time: appTime.val(),
-                }
 
                 $.ajax({
                     url: rescheduleAppUrl,

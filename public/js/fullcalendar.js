@@ -194,11 +194,11 @@ function highlightHolidays(fcDay, className="holiday")
     var fcDate = formatDateObj(fcDay.date, 'YYYY-MM-DD');
     var calendarEl = fcDay.el;
 
-    holidays(year).map(function(holiday){
+    holidays(year).map(function(holiday) {
         holiday.dates.map(function(date){
             var holidayDate = formatDateObj(date, 'YYYY-MM-DD');
 
-            $('.fc-day[data-date="'+holidayDate+'"]').addClass('holiday');
+            $('.fc-day[data-date="' + holidayDate + '"]').addClass('holiday');
 
             if(fcDate == holidayDate) {
                 calendarEl.insertAdjacentHTML('beforeend', '<i class="fc-content" aria-hidden="true">'+ holiday.name +'</i>');
@@ -223,7 +223,7 @@ function isNotHoliday(date)
             return holiday != null;
         }).map(function(day){
             return formatDateObj(day, 'YYYY-MM-DD');
-        })
+        });
     }).flat().includes(formattedDate);
 }
 
@@ -236,7 +236,7 @@ function isNotHoliday(date)
 function holidays(year)
 {
     var public = publicHolidays(year);
-    var religious = religiousHolidays(year)
+    var religious = religiousHolidays(year);
 
     return $.merge(public, religious);
 }
@@ -279,7 +279,7 @@ function publicHolidays(year, format = "YYYY-MM-DD")
             dates: [ november11, november12 ],
             name: 'Armistice Day'
         },
-    ]
+    ];
 }
 
 /**
@@ -312,7 +312,7 @@ function religiousHolidays(year, format = "YYYY-MM-DD")
             dates: [ easterMonday ],
             name: 'Easter Monday'
         },
-    ]
+    ];
 }
 
 /**
