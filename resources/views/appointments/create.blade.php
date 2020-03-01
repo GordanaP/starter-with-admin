@@ -19,6 +19,7 @@
     ])
     @endadminPageHeader
 
+    <!-- FullCalendar -->
     <div class="card">
         <div class="card-body">
             <div id="calendar"></div>
@@ -51,24 +52,26 @@
     <!-- Custom fullcalendar -->
     <script src="{{ asset('js/fullcalendar.js') }}"></script>
     <script src="{{ asset('js/modal_helpers.js') }}"></script>
+    <script src="{{ asset('js/form_helpers.js') }}"></script>
 
     <script>
+
         /**
          * Shedule App
          */
         var appDate = $('#appDate');
         var appTime = $('#appTime');
         var appButton = $(".app-button");
+        var deleteAppButton = $('#deleteAppButton').hide();
+        var validationErrors = ['patient', 'first_name', 'last_name', 'birthday',
+        'phone', 'app_date', 'app_time'];
         var scheduleAppModal = $('#scheduleAppModal');
         var scheduleAppForm = $('#scheduleAppForm');
-        var scheduleAppUrl = "{{ route('admin.doctors.appointments.store', $doctor) }}";
+        var scheduleAppUrl = @json(route('admin.doctors.appointments.store', $doctor));
 
         scheduleAppModal.autofocus('#appDate');
-
-        /**
-         * Delete app
-         */
-        var deleteAppButton = $('#deleteAppButton').hide();
+        scheduleAppModal.reset(validationErrors);
+        removeErrorUponTriggeringEvent();
 
         /**
          * Calendar
@@ -217,8 +220,9 @@
                     addEvent(calendar, response.appointment);
                     scheduleAppModal.close();
                 })
-                .fail(function() {
-                    console.log("error");
+                .fail(function(response) {
+                    var errors = response.responseJSON.errors;
+                    displayErrors(errors);
                 });
             });
 

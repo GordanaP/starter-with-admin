@@ -17,12 +17,8 @@ class IsBusinessDay implements Rule
      */
     public function passes($attribute, $value)
     {
-        $app_carbon = new AppCarbon;
-
-        if($app_carbon->validate($value))
-        {
-            return App::make('business-schedule')->isBusinessDay($value);
-        }
+        return (new AppCarbon)->validate($value)
+            ? App::make('business-schedule')->isBusinessDay($value) : '';
     }
 
     /**

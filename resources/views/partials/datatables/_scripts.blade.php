@@ -10,4 +10,5 @@
 
 <script src="{{ asset('js/checkbox.js') }}"></script>
 <script src="{{ asset('js/delete_checked.js') }}"></script>
+<script src="{{ asset('js/form_helpers.js') }}"></script>
 <script src="{{ asset('js/datatable.js') }}"></script>

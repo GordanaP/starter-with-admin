@@ -7,8 +7,6 @@ use Illuminate\Contracts\Validation\Rule;
 
 class IsValidDate implements Rule
 {
-    public $app_date;
-
     /**
      * Create a new rule instance.
      *
@@ -28,9 +26,7 @@ class IsValidDate implements Rule
      */
     public function passes($attribute, $value)
     {
-        $app_carbon = new AppCarbon;
-
-        return $app_carbon->validate($value);
+        return (new AppCarbon)->validate($value);
     }
 
     /**
@@ -40,6 +36,6 @@ class IsValidDate implements Rule
      */
     public function message()
     {
-        return 'An invalid date.';
+        return 'Invalid date.';
     }
 }

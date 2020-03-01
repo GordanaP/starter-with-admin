@@ -10,7 +10,7 @@
                     </option>
                 </select>
 
-                @invalid(['field' => 'patient_id']) @endinvalid
+                <span class="invalid-feedback patient"></span>
             </div>
         @else
             <!-- First Name -->
@@ -21,7 +21,7 @@
                 placeholder="First name"
                 value="{{ old('first_name') }}" />
 
-                @invalid(['field' => 'first_name']) @endinvalid
+                <span class="invalid-feedback first_name"></span>
             </div>
 
             <!-- last Name -->
@@ -32,7 +32,7 @@
                 placeholder="Last name"
                 value="{{ old('last_name') }}" />
 
-                @invalid(['field' => 'last_name']) @endinvalid
+                <span class="invalid-feedback last_name"></span>
             </div>
 
             <!-- Birthday  -->
@@ -43,7 +43,7 @@
                 placeholder="Date of birth"
                 value="{{ old('birthday') }}"/>
 
-                @invalid(['field' => 'birthday']) @endinvalid
+                <span class="invalid-feedback birthday"></span>
             </div>
 
             <div class="form-group">
@@ -53,7 +53,7 @@
                 placeholder="Phone number"
                 value="{{ old('phone') }}"/>
 
-                @invalid(['field' => 'phone']) @endinvalid
+                <span class="invalid-feedback phone"></span>
             </div>
 
         @endif
@@ -76,7 +76,7 @@
         placeholder="yyyy-mm-dd"
         value="{{ old('app_date') }}" />
 
-        @invalid(['field' => 'app_date']) @endinvalid
+        <span class="invalid-feedback app_date"></span>
     </div>
 
     <!-- The appointment time -->
@@ -86,6 +86,6 @@
         placeholder="hh:mm"
         value="{{ old('app_time') }}" />
 
-        @invalid(['field' => 'app_time']) @endinvalid
+        <span class="invalid-feedback app_time"></span>
     </div>
 </form>

@@ -155,15 +155,7 @@ function handleSuccessResponse(records, datatable)
 {
     reloadLocation(records)
     handleResponse(records, datatable);
-    removeErrorField();
-}
-
-/**
- * Remove the error field.
- */
-function removeErrorField()
-{
-    $('div.invalid-feedback').empty().hide();
+    removeError();
 }
 
 /**
@@ -187,22 +179,4 @@ function handleResponse(records, datatable)
 function reloadLocation(loc)
 {
     $(loc).load(location.href +  ' '+loc);
-}
-
-function displayErrors(errors, htmlEl = 'span.')
-{
-    for (error in errors) {
-        var errorMessage = errors[error][0];
-        displayError(errorBox(error, htmlEl), errorMessage);
-    }
-}
-
-function displayError(field, message)
-{
-    field.show().text(message);
-}
-
-function errorBox(name, htmlEl)
-{
-    return $(htmlEl+name);
 }

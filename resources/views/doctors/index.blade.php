@@ -35,6 +35,6 @@
 
         @include('partials.datatables._delete_records')
 
-    </script>s
+    </script>
 
 @endsection

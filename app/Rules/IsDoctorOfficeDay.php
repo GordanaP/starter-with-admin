@@ -2,6 +2,7 @@
 
 namespace App\Rules;
 
+use App\Utilities\AppCarbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -33,9 +34,11 @@ class IsDoctorOfficeDay implements Rule
      */
     public function passes($attribute, $value)
     {
-        return App::make('doctor-schedule')
-            ->setDoctor($this->doctor)
-            ->isOfficeDay($value);
+        return (new AppCarbon)->validate($value)
+            ? App::make('doctor-schedule')
+                ->setDoctor($this->doctor)
+                ->isOfficeDay($value)
+            : '';
     }
 
     /**

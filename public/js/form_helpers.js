@@ -1,127 +1,58 @@
-function clearErrorOnNewInput()
+/**
+ * Remove the error message upon triggering an event on a given element.
+ *
+ * @param  string el
+ */
+function removeErrorUponTriggeringEvent(el="span.invalid-feedback.")
 {
     $("input, textarea").on('keydown', function () {
-        clearError(errorBox($(this).attr('name')));
-        clearError(errorBox($(this).attr('name'), 'p.'));
+         removeErrorMessage($(this).attr('name'), el);
     });
 
     $("select").on('change', function () {
-        clearError(errorBox($(this).attr('name')));
-        clearError(errorBox($(this).attr('name'), 'p.'));
+         removeErrorMessage($(this).attr('name'), el);
     });
 
     $("input[type=radio]").on('click', function() {
-        clearError(errorBox($(this).attr('name')));
-        clearError(errorBox($(this).attr('name'), 'p.'));
+         removeErrorMessage($(this).attr('name'), el);
     });
 
     $("input[type=checkbox]").on('click', function() {
-
         var name = $(this).attr('name').slice(0,-2);
-
-        clearError(errorBox(name));
-        clearError(errorBox(name, 'p.'));
-    })
+        removeErrorMessage($(this).attr('name'), el);
+    });
 }
 
-function displayErrors(errors, htmlEl = 'span.')
+/**
+ * Remove the error message.
+ *
+ * @param  string error
+ * @param  string el
+ */
+function  removeErrorMessage(error, el) {
+    $(el+error).empty().hide();
+}
+
+/**
+ * Display errors.
+ *
+ * @param  array errors
+ * @param  string htmlEl
+ */
+function displayErrors(errors, el = 'span.invalid-feedback.')
 {
     for (error in errors) {
         var errorMessage = errors[error][0];
-        displayError(errorBox(error, htmlEl), errorMessage);
+        $(el + error).show().text(errorMessage);
     }
 }
 
-function clearErrors(fields)
+/**
+ * Remove the error.
+ *
+ * @param  string field
+ */
+function removeError(field = '.invalid-feedback')
 {
-    $.each(fields, function(index, name) {
-        clearError(errorBox(name))
-    });
-}
-
-function displayError(field, message)
-{
-    field.show().text(message);
-}
-
-function clearError(field)
-{
-    field.hide().text('');
-}
-
-function reloadLocation(location)
-{
-    $(location).load(' '+location );
-}
-
-function reloadDataTable(datatable)
-{
-    datatable.ajax.reload();
-}
-
-function errorBox(name, htmlEl)
-{
-    return $(htmlEl+name);
-}
-
-function clearForm()
-{
-    $("form").trigger('reset');
-}
-
-function redirectTo(url)
-{
-    location.href = url;
-}
-
-function showElement(el)
-{
-    el.removeClass('hidden')
-}
-
-function hideElement(el)
-{
-    el.addClass('hidden')
-}
-
-function resetInput(input)
-{
-    input.val('');
-}
-
-function emptyElement(el)
-{
-    el.empty();
-}
-
-function isEmptyInput( input )
-{
-    return input.val() == '';
-}
-
-function isEmptyElement( el )
-{
-    return ! $.trim(el.html());
-}
-
-function inputType(type)
-{
-    return $("input:"+type);
-}
-
-function optionValue(option)
-{
-    return option.val();
-}
-
-function makeArray(data)
-{
-    return $.map(data, function(value, index){
-        return [value];
-    });
-}
-
-function createById(name)
-{
-    return $('#'+name);
+    $(field).empty().hide();
 }

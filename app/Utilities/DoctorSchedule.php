@@ -90,6 +90,14 @@ class DoctorSchedule extends AppCarbon
         });
     }
 
+    public function isValidOfficeDay($date)
+    {
+        return $this->app_carbon->validate($date) &&
+            \App::make('business-schedule')->isBusinessDay($date) &&
+            $this->app_carbon->isEqualOrAfterToday($date) &&
+            $this->isOfficeDay($date);
+    }
+
     /**
      * Determine if the doctor is in the office on the given day.
      *
@@ -97,7 +105,7 @@ class DoctorSchedule extends AppCarbon
      */
     public function isOfficeDay($date): bool
     {
-        $date_iso = $this->app_carbon->isoWeekDay($date);
+        $date_iso = $this->parse($date)->dayOfWeek;
 
         return $this->doctor->business_days->map(function($day){
             return $day->iso;
